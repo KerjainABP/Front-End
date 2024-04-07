@@ -11,7 +11,7 @@ const Perusahaan = () => {
           <div>
             <h1 className='lg:text-[60px] font-medium lg:w-[630px] lg:mb-16'>Temukan Bakat yang Cocok dengan Perusahaan Anda.</h1>
             <p className='lg:text-[20px] font-light lg:w-[600px] lg:mb-20 border'>Temukan Bakat yang sesuai dengan Perusahaan Anda di Kerjain. Beragam Individual dengan kemampuan yang unik tersedia di kerjain. </p>
-            <Link to={`/daftar`} className='border bg-[#051A49] text-white lg:px-9 lg:py-6 lg:text-[18px] rounded-3xl '>Daftarkan Perusahaan Anda</Link>
+            <Link to={`/daftarPerusahaan`} className='border bg-[#051A49] text-white lg:px-9 lg:py-6 lg:text-[18px] rounded-3xl '>Daftarkan Perusahaan Anda</Link>
           </div>
           <div>
             <img src={LandingPage1} alt="" />
