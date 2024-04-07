@@ -1,7 +1,8 @@
 import React from 'react'
 import Logo from "../../assets/Logo.png"
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
+    const  location = useLocation();
   return (
     <div className='flex justify-between items-center lg:px-[144px] lg:py-6 bg-white font-popins'>
         <div>
@@ -14,8 +15,8 @@ const Navbar = () => {
             </div>
         </div>
         <div className='flex gap-4'>
-            <button><Link to={`/masuk`}>Masuk</Link></button>
-            <button><Link to={`/daftar`}>Daftar</Link></button>
+            <button><Link to={location.pathname === "/" || location.pathname === '/daftar' ? '/masuk':'/masukPerusahaan'}>Masuk</Link></button>
+            <button><Link to={location.pathname === "/" || location.pathname === '/masuk' ? '/daftar':'/daftarPerusahaan'}>Daftar</Link></button>
         </div>
     </div>
   )
