@@ -26,7 +26,7 @@ const Login = () => {
     const handleSubmit = async () => {
         try {
 
-            const response = await axios.post('http://127.0.0.1:8000/api/loginuser', {
+            const response = await axios.post('https://kerjain-be-production.up.railway.app/api/loginuser', {
                 'email': data.email,
                 'password': data.password
             }, {
