@@ -36,7 +36,6 @@ const Daftar = () => {
             },{
                 headers: {'Content-Type': 'application/json'}
             }).then(function(response) {
-                console.log(response);
                 navigate('/masuk')
               }).catch(function(error) {
                 console.log(error);
@@ -48,29 +47,29 @@ const Daftar = () => {
   return (
     <div className='font-popins'>
         <Navbar/>
-        <div className='bg-[#E5E5E5] h-[90vh]  flex flex-col gap-6 border justify-center items-center '>
+        <div className='bg-[#E5E5E5] h-[100vh] flex flex-col gap-6 border justify-center items-center pt-20 lg:pt-32 '>
             <div className=''>
                 <p className='text-right text-[#104ACC] font-bold'>Apakah anda mencari karyawan? </p>
-                <div className='flex flex-col bg-white lg:px-[72px] lg:py-8 lg:w-[450px]'>
-                    <h1 className='mb-10 font-bold text-[36px]'>Daftar</h1>
-                    <div className='mb-10'>
+                <div className='flex flex-col gap-4 justify-center bg-white px-6 py-4 lg:px-[72px] lg:py-8 lg:w-[450px]'>
+                    <h1 className='font-bold text-[36px]'>Daftar</h1>
+                    <div className=''>
                         <p>Nama</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                             <input className='outline-none w-[90%] ' type="text" name="nama" id="nama" onChange={handleChangeText} value={data.nama}/>
                         </div>
                     </div>
-                    <div className='mb-10'>
+                    <div className=''>
                         <p>Email</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                             <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email}/>
                         </div>
                     </div>
-                    <div className='mb-[45px]'>
+                    <div className=''>
                         <p>Password</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                             {open?
-                            (<input className='outline-none w-[90%] ' type="password" name="password" id="password" value={data.password} onChange={handleChangeText}/>):
-                            (<input className='outline-none w-[90%] ' type="text" name="password" id="password" value={data.password} onChange={handleChangeText}/>)
+                            (<input className='outline-none w-full ' type="password" name="password" id="password" value={data.password} onChange={handleChangeText}/>):
+                            (<input className='outline-none w-full ' type="text" name="password" id="password" value={data.password} onChange={handleChangeText}/>)
 
                             }
                             <button className='text-[24px]' onClick={()=> setOpen(!open)}>
@@ -78,21 +77,20 @@ const Daftar = () => {
                             </button>
                         </div>
                     </div>
-                    <div className='mb-[45px]'>
+                    <div className=''>
                         <p>Tanggal Lahir</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                            <input className='outline-none w-[90%] ' type="date" name="tanggalLahir" id="tanggalLahir" onChange={handleChangeText} value={data.tanggalLahir}/>
+                            <input className='outline-none w-full ' type="date" name="tanggalLahir" id="tanggalLahir" onChange={handleChangeText} value={data.tanggalLahir}/>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center"> 
-
-                        <button type="button" onClick={handleSubmit} className="text-white w-full bg-[#051A49] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Daftar</button>
+                    <div className="flex flex-col items-center gap-2"> 
+                        <button type="button" onClick={handleSubmit} className="text-white w-full bg-[#051A49] font-medium rounded-lg py-2">Daftar</button>
                         <p>Sudah punya akun? <Link to='/' className='text-[#003EC8]'>masuk disini</Link></p>
                     </div>
                 </div>
 
             </div>
-            <p className='font-bold text-[#051A49] text-[28px]'>Solusi Pertama Bagi Pengganguran</p>
+            <p className='font-bold text-[#051A49] text-[20px] lg:text-[28px]'>Solusi Pertama Bagi Pengganguran</p>
         </div>
         
     </div>
