@@ -5,7 +5,7 @@ const NavbarLogin = (props) => {
     const locate = useLocation()
     const { nama, popUpProfile } = props
     return (
-        <div className='flex justify-between items-center lg:px-[144px] lg:py-6 bg-white'>
+        <div className='flex justify-between items-center px-5 py-3 lg:px-[144px] lg:py-6 bg-white'>
             <div>
                 <img src={Logo} alt="" />
             </div>

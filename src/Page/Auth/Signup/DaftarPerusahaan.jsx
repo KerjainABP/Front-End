@@ -46,7 +46,6 @@ const DaftarPerusahaan = () => {
       }, {
         headers: { 'Content-Type': 'application/json' }
       }).then(function (response) {
-        console.log(response);
         navigate('/masukPerusahaan')
       }).catch(function (error) {
         console.log(error);
@@ -58,24 +57,24 @@ const DaftarPerusahaan = () => {
   return (
     <div className='font-popins'>
       <Navbar />
-      <div className='bg-[#E5E5E5] h-[90vh]  flex flex-col gap-3 border justify-center items-center '>
+      <div className='bg-[#E5E5E5] lg:h-[100vh] flex flex-col gap-3 border justify-center items-center pt-32 '>
         <div className=''>
           <p className='text-right text-[#104ACC] font-bold'>Apakah anda mencari Pekerjaan? </p>
-          <div className='flex flex-col bg-white lg:px-[72px] lg:py-8 lg:w-[450px]'>
-            <h1 className='mb-6 font-bold text-[36px]'>Daftar</h1>
-            <div className='mb-6'>
+          <div className='flex flex-col bg-white px-6 py-4 gap-3 lg:gap-6 lg:px-[72px] lg:py-8 lg:w-[450px]'>
+            <h1 className='font-bold text-[36px]'>Daftar</h1>
+            <div className=''>
               <p>Nama Perusahaan</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                 <input className='outline-none w-[90%] ' type="text" name="nama" id="nama" onChange={handleChangeText} value={data.nama} />
               </div>
             </div>
-            <div className='mb-6'>
+            <div className=''>
               <p>Email</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                 <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email} />
               </div>
             </div>
-            <div className='mb-6'>
+            <div className=''>
               <p>Password</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                 {open ?
@@ -88,13 +87,13 @@ const DaftarPerusahaan = () => {
                 </button>
               </div>
             </div>
-            <div className='mb-6'>
+            <div className=''>
               <p>Tahun Berdiri</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                 <input className='outline-none w-[90%] ' type="number" name="tahunBerdiri" id="tahunBerdiri" onChange={handleChangeText} value={data.tahunBerdiri} />
               </div>
             </div>
-            <div className='mb-[45px]'>
+            <div className=''>
               <p>Tipe</p>
               <div className='border border-[#051A49] px-3 py-[6px] flex flex-col items-left rounded'>
                 <div className='flex items-center gap-3'>
@@ -131,7 +130,7 @@ const DaftarPerusahaan = () => {
           </div>
 
         </div>
-        <p className='font-bold text-[#051A49] text-[28px]'>Solusi Pertama Bagi Perusahaan</p>
+        <p className='font-bold text-[#051A49] text-[20px] lg:text-[28px]'>Solusi Pertama Bagi Perusahaan</p>
       </div>
 
     </div>

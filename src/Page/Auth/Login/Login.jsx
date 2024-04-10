@@ -47,10 +47,10 @@ const Login = () => {
     return (
         <div className='font-popins'>
             <Navbar />
-            <div className='bg-[#E5E5E5] h-[90vh]  flex flex-row border justify-center items-center'>
+            <div className='bg-[#E5E5E5] h-[100vh] flex flex-row border justify-center items-center'>
                 <div className=' '>
-                    <h1>Apakah anda mencari karyawan? </h1>
-                    <div className=' bg-white lg:px-[72px] lg:py-8 lg:w-[450px]'>
+                    <h1 className='mb-4'>Apakah anda mencari karyawan? </h1>
+                    <div className=' flex flex-col gap-4 bg-white px-10 py-5 lg:px-[72px] lg:py-8 lg:w-[450px]'>
                         <h1 className='font-bold text-[36px]'>Masuk</h1>
                         <div>
                             <p>Email</p>
