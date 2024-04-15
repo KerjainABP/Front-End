@@ -26,7 +26,7 @@ const LoginPerusahaan = () => {
     const handleSubmit = async () => {
         try {
 
-            const response = await axios.post('https://kerjain-be-production.up.railway.app/loginperusahaan', {
+            const response = await axios.post('http://127.0.0.1:8000/api/loginperusahaan', {
                 'email': data.email,
                 'password': data.password
             }, {

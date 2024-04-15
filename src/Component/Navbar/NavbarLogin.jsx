@@ -17,8 +17,8 @@ const NavbarLogin = (props) => {
                 </div>
             </div>
             <div className='flex items-center gap-4'>
-                <div className='border rounded-full bg-slate-600'>
-                    <img className='w-10 h-10 rounded-full object-cover' src="https://i.pinimg.com/564x/4e/86/ad/4e86ad1a5714fb61a1a178ff4548bcf8.jpg" alt="" />
+                <div className='border rounded-full bg-slate-600 w-[40px] h-10'>
+                    
                 </div>
                 <p>{nama}</p>
             </div>
