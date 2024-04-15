@@ -9,6 +9,7 @@ import LoginPerusahaan from './Page/Auth/Login/LoginPerusahaan'
 import DaftarPerusahaan from './Page/Auth/Signup/DaftarPerusahaan'
 import DashboardPerusahaan from './Page/Dashboard/Perusahaan/DashboardPerusahaan'
 import ListPerusahaan from './Page/Dashboard/User/ListPerusahaan'
+import BuatIklan from './Page/Perusahaan/BuatIklan'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/daftar' element={<Daftar/>}/>
         <Route path='/daftarPerusahaan' element={<DaftarPerusahaan/>}/>
         <Route path='/LihatPerusahaan' element={<ListPerusahaan/>}/>
+        <Route path='/BuatIklan' element={<BuatIklan/>}/>
       </Routes>
     </BrowserRouter>
   )

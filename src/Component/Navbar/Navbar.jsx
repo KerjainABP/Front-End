@@ -8,7 +8,7 @@ const Navbar = () => {
         <div>
             <img src={Logo} alt="" />
         </div>
-        <div>
+        <div className='max-md:hidden'>
             <div className='flex gap-3 lg:gap-6'>
                 <Link to={`/`}>Pekerja</Link>
                 <Link className='' to={`/perusahaan`}>Perusahaan</Link>
