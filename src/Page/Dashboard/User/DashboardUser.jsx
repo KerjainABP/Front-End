@@ -10,6 +10,8 @@ import EditProfile from '../../../Component/Popup/Profile';
 import LandingPage1 from "../../../assets/landingPage1.png"
 import Footer from '../../../Component/Footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
+
+
 const DashboardUser = () => {
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -17,7 +19,7 @@ const DashboardUser = () => {
   const [cookies] = useCookies(['userID']); // Menggunakan array untuk menyediakan daftar kunci-kunci cookie
   const [showDialog, setShowDialog] = useState(false)
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchLocation, setSearchLocation] = useState('');
+  const [location, setLocation] = useState('');
   const navigate = useNavigate();
   useEffect(() => {
     const userID = cookies.userID;
@@ -39,14 +41,8 @@ const DashboardUser = () => {
   }, [cookies.userID]); // Memperbarui data saat userID berubah
   const handleSearch = (e) => {
     e.preventDefault();
-    // Menggunakan navigate untuk mengalihkan ke listLowongan dengan searchTerm dan searchLocation
-    if(searchTerm){
-      navigate(`/lowongan?tipe=${searchTerm}`);
-    }else if(searchLocation){
-      navigate(`/lowongan?lokasi=${searchLocation}`);
-    }else{
-      navigate(`/lowongan?tipe=${searchTerm}&lokasi=${searchLocation}`);
-    }
+    // Menggunakan navigate untuk mengalihkan ke listLowongan dengan searchTerm dan lokasi
+    navigate(`/lowongan?tipe=${searchTerm}&lokasi=${location}`);
   };
 
   return (
@@ -64,7 +60,7 @@ const DashboardUser = () => {
               <div className='bg-white w-full h-[150px] flex items-center gap-20 px-8'>
                 <div className='flex flex-col items-center gap-5'>
                   <p className='text-[20px]'>Lokasi</p>
-                  <input className='w-[300px] text-center outline-none border-none' value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} type="text" placeholder='Cari Lokasi' />
+                  <input className='w-[300px] text-center outline-none border-none' type="text" placeholder='Cari Lokasi' value={location} onChange={(e) => setLocation(e.target.value)} />
                 </div>
                 <div className='flex flex-col items-center gap-5'>
                   <p className='text-[20px]'>Tipe</p>
