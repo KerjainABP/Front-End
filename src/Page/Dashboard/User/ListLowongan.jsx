@@ -23,10 +23,18 @@ const ListLowongan = () => {
         let compNames = company.map((item) => item.nama);
         return compNames;
     }
-    const handleSearch = (data, search) => {
+    const handleSearchTipe = (data, search) => {
         const searchLowercase = search.toLowerCase();
-        const filteredData = data.filter(item => 
+        const filteredData = data.filter(item =>     
             item.nama_posisi.replace(/[\s-]+/g, '').toLowerCase().includes(searchLowercase)
+        );
+        console.log(filteredData);
+        return filteredData // Jika Anda ingin menggunakan data yang difilter untuk operasi selanjutnya
+    }
+    const handleSearchLokasi = (data, lokasi) => {
+        const lokasiLowerCase = lokasi.toLowerCase();
+        const filteredData = data.filter(item =>     
+            item.lokasi.replace(/[\s-]+/g, '').toLowerCase().includes(lokasiLowerCase)
         );
         console.log(filteredData);
         return filteredData // Jika Anda ingin menggunakan data yang difilter untuk operasi selanjutnya
@@ -34,23 +42,25 @@ const ListLowongan = () => {
     
     useEffect(() => {
         const userID = cookies.userID;
-
         const fetchData = async () => {
             const queryParams = new URLSearchParams(location.search);
             const search = queryParams.get('tipe');
-            const searchLokasi = queryParams.get('lokasi')
+            const searchLokasi = queryParams.get('lokasi');
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api/user/${userID}`);
                 const lowongan = await axios.get(`http://127.0.0.1:8000/api/user/lowongan/all`);
-                const perushaan = await axios.get(`http://127.0.0.1:8000/api/user/perusahaan/all`);
+                const perusahaan = await axios.get(`http://127.0.0.1:8000/api/user/perusahaan/all`);
                 
-                if ((search === "" || search === null) && (searchLokasi === "" || searchLokasi === null)){
-                    setDataLowongan(lowongan.data)
-                }else{
-                    console.log(lowongan.data)
-                    setDataLowongan(handleSearch(lowongan.data, search))
-                } 
-                setDaftarPerusahaan(perushaan.data)
+                let filteredLowongan = lowongan.data;
+                // Filter berdasarkan tipe jika parameter tipe ada
+                if (search) {
+                    filteredLowongan = handleSearchTipe(filteredLowongan, search);
+                }else if (searchLokasi) {
+                    filteredLowongan = handleSearchLokasi(filteredLowongan, searchLokasi)
+                }
+                
+                setDataLowongan(filteredLowongan);
+                setDaftarPerusahaan(perusahaan.data);
                 setUserData(response.data);
             } catch (error) {
                 setError(error);

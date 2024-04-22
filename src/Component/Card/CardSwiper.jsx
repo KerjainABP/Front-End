@@ -31,9 +31,6 @@ const CardSwiper = () => {
         const perusahaan = await axios.get('http://127.0.0.1:8000/api/user/perusahaan/all');
         setPosts(response.data);
         setPerusahaan(perusahaan.data);
-
-        console.log(response.data)
-        console.log(perusahaan.data)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
