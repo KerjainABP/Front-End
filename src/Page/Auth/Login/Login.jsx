@@ -22,7 +22,8 @@ const Login = () => {
             [id]: value
         }));
     };
-
+   
+    
     const handleSubmit = async () => {
         try {
 
@@ -55,15 +56,15 @@ const Login = () => {
                         <div>
                             <p>Email</p>
                             <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                                <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email} />
+                                <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()} />
                             </div>
                         </div>
                         <div className='mb-[45px]'>
                             <p>Password</p>
                             <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                                 {open ?
-                                    (<input className='outline-none w-[90%] ' type="password" name="password" id="password" onChange={handleChangeText} value={data.password} />) :
-                                    (<input className='outline-none w-[90%] ' type="text" name="password" id="password" onChange={handleChangeText} value={data.password} />)
+                                    (<input className='outline-none w-[90%] ' type="password" name="password" id="password" onChange={handleChangeText} value={data.password} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()} />) :
+                                    (<input className='outline-none w-[90%] ' type="text" name="password" id="password" onChange={handleChangeText} value={data.password} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()} />)
 
                                 }
                                 <button className='text-[24px]' onClick={() => setOpen(!open)}>
@@ -72,9 +73,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="flex flex-col items-center">
-
-                            <button type="button" className="text-white w-full bg-[#051A49] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none" onClick={handleSubmit}>Masuk</button>
-
+                            <button type="button" className="text-white w-full bg-[#051A49] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"  onClick={handleSubmit}>Masuk</button>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import LandingPage1 from "../../assets/landingPage1.png"
 import { Link } from 'react-router-dom'
 const LandingPage = () => {
   return (
-    <div className='font-popins bg-[#e5e5e5] h-[100vh]'>
+    <div className='font-popins bg-[#e5e5e5] min-h-[100vh]'>
         <Navbar/>
         <div className='flex lg:justify-around flex-col-reverse items-center pt-32 px-5 py-4 gap-6 2xl:flex-row lg:px-[144px] lg:pt-40 lg:py-6 '>
           <div>

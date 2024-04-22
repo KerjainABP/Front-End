@@ -10,6 +10,9 @@ import DaftarPerusahaan from './Page/Auth/Signup/DaftarPerusahaan'
 import DashboardPerusahaan from './Page/Dashboard/Perusahaan/DashboardPerusahaan'
 import ListPerusahaan from './Page/Dashboard/User/ListPerusahaan'
 import BuatIklan from './Page/Perusahaan/BuatIklan'
+import Kualifikasi from './Page/Perusahaan/Kualifikasi'
+import Lamaranku from './Page/Dashboard/User/Lamaranku'
+import ListLowongan from './Page/Dashboard/User/ListLowongan'
 
 const App = () => {
   return (
@@ -25,6 +28,11 @@ const App = () => {
         <Route path='/daftarPerusahaan' element={<DaftarPerusahaan/>}/>
         <Route path='/LihatPerusahaan' element={<ListPerusahaan/>}/>
         <Route path='/BuatIklan' element={<BuatIklan/>}/>
+        <Route path='/kualifikasi/:id' element={<Kualifikasi/>}/>
+        <Route path='/lamaranku' element={<Lamaranku/>}/>
+        <Route path='/lowongan' element={<ListLowongan/>}/>
+        
+        
       </Routes>
     </BrowserRouter>
   )
