@@ -6,6 +6,8 @@ import PerusahaanImage from "../../../assets/PerusahanImage.png"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { TiInputChecked } from "react-icons/ti";
+import MarqueePT from '../../../Component/MarqueePT/MarqueePT';
+import Footer from '../../../Component/Footer/Footer';
 
 const ListPerusahaan = () => {
     const [error, setError] = useState(null);
@@ -35,7 +37,7 @@ const ListPerusahaan = () => {
         <div className='font-popins'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
             <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
-            <div className='px-[140px] mt-10'>
+            <div className='px-[140px] my-10'>
                 <div className='flex justify-evenly items-center mb-[160px]'>
                     <img src={PerusahaanImage} alt="" />
                     <div className='w-[560px]'>
@@ -51,8 +53,12 @@ const ListPerusahaan = () => {
                 </div>
                 <div>
                     <p className='text-center text-[48px] font-bold mb-10 '>Mitra Kerjain</p>
+                    <div>
+                        <MarqueePT/>
+                    </div>
                 </div>
             </div>
+            <Footer className={"px-[140px]"}/>
         </div>
     )
 }

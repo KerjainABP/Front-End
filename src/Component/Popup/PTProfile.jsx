@@ -3,31 +3,34 @@ import { useNavigate } from 'react-router-dom'
 import { TbX } from 'react-icons/tb';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-const EditProfile = ({ handleDialog, setHandleDialog }) => {
+const PTProfile = ({ handleDialog, setHandleDialog }) => {
     const [userData, setUserData] = useState({
-        nama: '',
-        email: '',
-        tanggalLahir: '',
-        deskripsi: ''
+        nama:'',
+        email:'',
+        tipe:'',
+        tahun_berdiri:'',
+        deskripsi:''
     });
-    const [cookies, setCookie, removeCookie] = useCookies(['userID']);
-    const navigate = useNavigate()
+    const [cookies, setCookie, removeCookie] = useCookies(['perusahaanID']);
+    const navigate = useNavigate();
     useEffect(() => {
-        const userID = cookies.userID;
+        const userID = cookies.perusahaanID;
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/user/${userID}`);
+                const response = await axios.get(`http://127.0.0.1:8000/api/pt/${userID}`);
+                console.log(response)
                 setUserData(response.data);
                 setUserData({
-                    nama: response.data.nama,
+                    nama : response.data.nama,
                     email: response.data.email,
-                    tanggalLahir: response.data.tanggal_lahir,
+                    tahun_berdiri: response.data.tahun_berdiri,
+                    tipe:response.data.tipe,
                     deskripsi: response.data.deskripsi
                 })
             } catch (error) {
                 console.log(error)
-            }
+            } 
         };
 
         if (userID) {
@@ -39,19 +42,10 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
         setHandleDialog(!handleDialog);
 
     };
+
     const handleLogout = () => {
-        // Menghapus cookie 'userID'
-        removeCookie('userID', { path: '/' });
-
-        // Mengatur ulang state userData atau state lain yang relevan
-        setUserData({
-            nama: '',
-            email: '',
-            tanggalLahir: '',
-            deskripsi: ''
-        });
-
-        // Mengalihkan pengguna ke halaman login
+        removeCookie('perusahaanID', { path: '/' });
+        setUserData(null);
         navigate('/');
     };
 
@@ -68,29 +62,28 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                 <div className='flex flex-col gap-5 pb-8 mb-5 border-b-2 border-black'>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Nama</h1>
-                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.nama} />
+                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.nama} />
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Email</h1>
-                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.email} />
+                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.email}/>
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
-                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.tanggalLahir} />
+                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.tahun_berdiri}/>
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Deskripsi</h1>
-                        <textarea type="text" className='resize-none outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.deskripsi}></textarea>
+                        <textarea type="text" className='resize-none outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.deskripsi}></textarea>
                     </div>
                 </div>
                 <div className='flex justify-between'>
-                    <div>
+                    <div className='flex gap-3 items-center'>
                         <button className='px-2 py-2 bg-[#ED1A1A] text-white rounded-md'>Hapus Akun</button>
                         <button className='px-2 py-2 bg-[#051A49] text-white rounded-md'>Simpan</button>
                     </div>
                     <div>
                         <button className='px-2 py-2 bg-[#051A49] text-white rounded-md' onClick={handleLogout}>Keluar</button>
-                        
                     </div>
                 </div>
             </div>
@@ -98,4 +91,4 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
     )
 }
 
-export default EditProfile
+export default PTProfile

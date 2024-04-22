@@ -11,98 +11,65 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import axios from 'axios'
 import CardJob from './CardJob';
+import { useCookies } from 'react-cookie';
 
-const CartPopup = ({ handleClose }) => (
-    <div className="cart-popup">
-        <p>Item berhasil dimasukkan ke keranjang!</p>
-        <button onClick={handleClose}>Tutup</button>
-    </div>
-);
 const CardSwiper = () => {
-    // const [posts, setPosts] = useState([])
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get('http://localhost:8080/api/v1/tanaman');
-    //             setPosts(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
+  const cookie = useCookies()
+  const [perusahaan, setPerusahaan] = useState([])
+  const [posts, setPosts] = useState([])
 
-    //     fetchData();
-    // }, []);
-    // const buyProduct = (product) => {
-    //     onBuy(product)
-    // }
-    // return (
-    //     <>
-    //         <Swiper
-    //             breakpoints={{
-    //                 320: {
-    //                     slidesPerView: 1,
-    //                     spaceBetween: 20,
-    //                 },
+  const searchPT = (perusahaan, post) => {
+    const company = perusahaan.filter(item1 => post.some(item2 => item2.id_perusahaan === item1.id));
+    let compNames = company.map((item) => item.nama);
+    return compNames;
+  }
 
-    //                 640: {
-    //                     slidesPerView: 3,
-    //                     spaceBetween: 40,
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/user/lowongan/all');
+        const perusahaan = await axios.get('http://127.0.0.1:8000/api/user/perusahaan/all');
+        setPosts(response.data);
+        setPerusahaan(perusahaan.data);
 
-    //                 },
-    //                 1000: {
-    //                     slidesPerView: 5,
-    //                     spaceBetween: 20,
-    //                 }
-    //             }}
+        console.log(response.data)
+        console.log(perusahaan.data)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
-    //             navigation={true}
-    //             loop={true}
-    //             modules={[Navigation]}
-    //             className="mySwiper"
-    //         >
-    //             <SwiperSlide>
-    //                 <CardJob/>
-    //             </SwiperSlide>
-    //             <SwiperSlide>
-    //                 <CardJob/>
-    //             </SwiperSlide>
-    //             <SwiperSlide>
-    //                 <CardJob/>
-    //             </SwiperSlide>
-    //             <SwiperSlide>
-    //                 <CardJob/>
-    //             </SwiperSlide>
-    //             <SwiperSlide>
-    //                 <CardJob/>
-    //             </SwiperSlide>
-    //         </Swiper>
-    //     </>
-    // )
-    return (
-        <>
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            loop={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper h-[300px]  pl-20"
-          >
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-            <SwiperSlide><CardJob/></SwiperSlide>
-          </Swiper>
-        </>
-      );
+  return (
+    <>
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        loop={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper h-[300px]  pl-20"
+      >
+        {posts.map((data) => (
+          <SwiperSlide key={data.id}>
+            <CardJob 
+            id={data.id} 
+            pekerjaan={data.nama_posisi} 
+            perusahaan={searchPT(perusahaan, [data])} // Ubah posts menjadi [data]
+            slot={data.slot_posisi}
+            lokasi={data.lokasi}
+            gajiMin = {data.gaji_dari}
+            gajiMax = {data.gaji_hingga}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
+  );
 }
 
 export default CardSwiper
