@@ -19,17 +19,31 @@ const Lamaranku = () => {
         let compNames = company.map((item) => item.nama);
         return compNames;
     }
-    function formatCurrency(amount) {
-        // Mengubah angka menjadi string dan membalikkan string tersebut
-        const reversedAmount = String(amount).split('').reverse().join('');
-        // Menambahkan titik sebagai pemisah ribuan setiap 3 karakter
-        const formattedAmount = reversedAmount.match(/.{1,3}/g).join('.').split('').reverse().join('');
+    function formatCurrency(lowongan, itemId) {
+        // Mencari objek lowongan berdasarkan id
+        const item = lowongan.find((items) => items.id === itemId);
+        
+        if (!item) return "Data tidak ditemukan"; // Jika item tidak ditemukan, kembalikan pesan error
+
+        // Fungsi untuk mengubah angka menjadi format mata uang
+        const formatAmount = (amount) => {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount);
+        };
+
+        // Menggunakan fungsi formatAmount untuk gajiMin dan gajiMax
+        const gajiMinFormatted = formatAmount(item.gaji_dari);
+        const gajiMaxFormatted = formatAmount(item.gaji_hingga);
+
         // Mengembalikan string dengan format mata uang
-        return `Rp ${formattedAmount}`;
-      }
+        return `${gajiMinFormatted} - ${gajiMaxFormatted}`;
+    }
+    function getLokasi(lowongan, itemId){
+        const item = lowongan.find((items) => items.id === itemId);
+        if (!item) return "Data tidak ditemukan"
+        return item.lokasi
+    }
     useEffect(() => {
         const userID = cookies.userID;
-        console.log(userID)
         const fetchData = async () => {
             try {
                 const user = await axios.get(`http://127.0.0.1:8000/api/user/${userID}`)
@@ -65,7 +79,7 @@ const Lamaranku = () => {
                     <div className='px-[140px] '>
                         <h1 className='text-[32px] font-bold'>Lamaranku</h1>
                         <div className='flex flex-col gap-4 items-center'>
-                            {dataLowongan.map((item) => (
+                            {dataLamaran.map((item) => (
                                 <div className='border px-8 py-4 rounded-xl flex justify-between items-end w-[50%]'>
                                     <div>
                                         <div className='mb-3'>
@@ -76,8 +90,8 @@ const Lamaranku = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className='flex items-center gap-3 text-[20px]'><TbMapPin/>{item.lokasi}</p>
-                                            <p className='text-[20px]'>{formatCurrency(item?.gaji_dari)} - {formatCurrency(item?.gaji_hingga)}</p>
+                                            <p className='flex items-center gap-3 text-[20px]'><TbMapPin/>{getLokasi(dataLowongan, item?.id_lowongan)}</p>
+                                            <p className='text-[20px]'>{formatCurrency(dataLowongan, item?.id_lowongan)} </p>
                                         </div>
                                     </div>
                                     <div className=''>

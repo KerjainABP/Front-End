@@ -64,10 +64,10 @@ const ListLowongan = () => {
         }
     }, [cookies.userID]);
     return (
-        <div className='font-popins'>
+        <div className='font-popins min-h-[100vh]'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
             <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
-            <div className='px-[140px] my-10'>
+            <div className='px-[140px] my-10 '>
                 <h1 className='text-[28px] font-bold mb-3'>Lowongan Tersedia({dataLowongan?.length})</h1>
                 <div className='flex flex-col gap-5'>
                     {dataLowongan?.map((item, index) => (
