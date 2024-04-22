@@ -17,6 +17,7 @@ const DashboardUser = () => {
   const [cookies] = useCookies(['userID']); // Menggunakan array untuk menyediakan daftar kunci-kunci cookie
   const [showDialog, setShowDialog] = useState(false)
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchLocation, setSearchLocation] = useState('');
   const navigate = useNavigate();
   useEffect(() => {
     const userID = cookies.userID;
@@ -38,8 +39,14 @@ const DashboardUser = () => {
   }, [cookies.userID]); // Memperbarui data saat userID berubah
   const handleSearch = (e) => {
     e.preventDefault();
-    // Menggunakan navigate untuk mengalihkan ke listLowongan dengan searchTerm
-    navigate(`/lowongan?tipe=${searchTerm}`);
+    // Menggunakan navigate untuk mengalihkan ke listLowongan dengan searchTerm dan searchLocation
+    if(searchTerm){
+      navigate(`/lowongan?tipe=${searchTerm}`);
+    }else if(searchLocation){
+      navigate(`/lowongan?lokasi=${searchLocation}`);
+    }else{
+      navigate(`/lowongan?tipe=${searchTerm}&lokasi=${searchLocation}`);
+    }
   };
 
   return (
@@ -57,7 +64,7 @@ const DashboardUser = () => {
               <div className='bg-white w-full h-[150px] flex items-center gap-20 px-8'>
                 <div className='flex flex-col items-center gap-5'>
                   <p className='text-[20px]'>Lokasi</p>
-                  <input className='w-[300px] text-center outline-none border-none' type="text" placeholder='Cari Lokasi' />
+                  <input className='w-[300px] text-center outline-none border-none' value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} type="text" placeholder='Cari Lokasi' />
                 </div>
                 <div className='flex flex-col items-center gap-5'>
                   <p className='text-[20px]'>Tipe</p>
