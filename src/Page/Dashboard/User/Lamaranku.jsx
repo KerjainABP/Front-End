@@ -22,7 +22,7 @@ const Lamaranku = () => {
     function formatCurrency(lowongan, itemId) {
         // Mencari objek lowongan berdasarkan id
         const item = lowongan.find((items) => items.id === itemId);
-        
+
         if (!item) return "Data tidak ditemukan"; // Jika item tidak ditemukan, kembalikan pesan error
 
         // Fungsi untuk mengubah angka menjadi format mata uang
@@ -37,7 +37,7 @@ const Lamaranku = () => {
         // Mengembalikan string dengan format mata uang
         return `${gajiMinFormatted} - ${gajiMaxFormatted}`;
     }
-    function getLokasi(lowongan, itemId){
+    function getLokasi(lowongan, itemId) {
         const item = lowongan.find((items) => items.id === itemId);
         if (!item) return "Data tidak ditemukan"
         return item.lokasi
@@ -90,12 +90,12 @@ const Lamaranku = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <p className='flex items-center gap-3 text-[20px]'><TbMapPin/>{getLokasi(dataLowongan, item?.id_lowongan)}</p>
+                                            <p className='flex items-center gap-3 text-[20px]'><TbMapPin />{getLokasi(dataLowongan, item?.id_lowongan)}</p>
                                             <p className='text-[20px]'>{formatCurrency(dataLowongan, item?.id_lowongan)} </p>
                                         </div>
                                     </div>
                                     <div className=''>
-                                        <h1 className='text-[28px] py-4 px-6 border'>Applied</h1>
+                                        <h1 className='text-[24px] py-4 px-6 border rounded-xl'>{item?.status === "applied"?"Diproses":""}</h1>
                                     </div>
                                 </div>
                             ))}
