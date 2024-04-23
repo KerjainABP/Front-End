@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import NavbarLogin from '../../Component/Navbar/NavbarLogin'
 import EditProfile from '../../Component/Popup/Profile'
 import { useCookies } from 'react-cookie'
@@ -9,6 +9,7 @@ import Footer from '../../Component/Footer/Footer'
 
 const Kualifikasi = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
   const [kualifikasiData, setKualifikasiData] = useState([])
   const [userData, setUserData] = useState(null);
   const [lowonganData, setLowongan] = useState(null)
@@ -66,6 +67,7 @@ const Kualifikasi = () => {
       const response = await axios.post(`http://127.0.0.1:8000/api/user/apply`, applyData);
       if (response.status === 201) {
         alert('Berhasil melamar pekerjaan');
+        navigate('/dashboardUser')
       } else {
         alert('Gagal melamar pekerjaan');
       }

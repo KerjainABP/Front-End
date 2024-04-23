@@ -4,14 +4,12 @@ import { PiMoney } from "react-icons/pi";
 import { NavLink, useNavigate } from 'react-router-dom';
 const CardJob = (props) => {
     const route = useNavigate()
-    const { id, pekerjaan, perusahaan, slot, lokasi, gajiMin, gajiMax } = props
+    const { id, pekerjaan, perusahaan, slot, lokasi, gajiMin, gajiMax,pelamar } = props
     function formatCurrency(amount) {
         // Mengubah angka menjadi string dan membalikkan string tersebut
         const reversedAmount = String(amount).split('').reverse().join('');
-
         // Menambahkan titik sebagai pemisah ribuan setiap 3 karakter
         const formattedAmount = reversedAmount.match(/.{1,3}/g).join('.').split('').reverse().join('');
-
         // Mengembalikan string dengan format mata uang
         return `Rp ${formattedAmount}`;
     }
@@ -29,7 +27,7 @@ const CardJob = (props) => {
                 <div className='flex flex-col gap-5'>
                     <div className='flex items-center gap-2'>
                         <TbUsersGroup className='text-[28px]' />
-                        <p>0 / {slot}</p>
+                        <p>{pelamar} / {slot}</p>
                     </div>
                     <div className='flex items-center gap-2'>
                         <TbMapPin className='text-[28px]' />

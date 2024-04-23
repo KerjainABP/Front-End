@@ -24,12 +24,18 @@ const CardSwiper = () => {
     return compNames;
   }
 
+  // const getPelamar = async(lowonganId) =>{
+  //   const pelamar = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/pendaftar/${lowonganId}`)
+  //   console.log(pelamar.lenth)
+    
+  // }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/user/lowongan/all');
-        const perusahaan = await axios.get('http://127.0.0.1:8000/api/user/perusahaan/all');
-        setPosts(response.data);
+        const perusahaan = await axios.get('http://127.0.0.1:8000/api/user/perusahaan/all')
+        setPosts(response.data);        
         setPerusahaan(perusahaan.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -59,6 +65,7 @@ const CardSwiper = () => {
             perusahaan={searchPT(perusahaan, [data])} // Ubah posts menjadi [data]
             slot={data.slot_posisi}
             lokasi={data.lokasi}
+            pelamar = {0}
             gajiMin = {data.gaji_dari}
             gajiMax = {data.gaji_hingga}
             />

@@ -30,10 +30,9 @@ const DashboardPerusahaan = () => {
       try {
         const response = await axios.get(`http://127.0.0.1:8000/api/pt/${perusahaanID}`);
         const lowongan = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/${perusahaanID}`)
-        const pendaftar = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/pendaftar/${perusahaanID}`)
+      
         setUserData(response.data);
         setDataLowongan(lowongan.data)
-        console.log(pendaftar)
       } catch (error) {
         setError(error);
       } finally {
