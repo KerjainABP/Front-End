@@ -74,6 +74,20 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
         }
     };
 
+    const handleDeleteUser = async () => {
+        const userID = cookies.userID;
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/deleteuser/${userID}`);
+            console.log('Pengguna berhasil dihapus');
+            // Menghapus cookie 'userID'
+            removeCookie('userID', { path: '/' });
+            // Opsi untuk navigasi setelah penghapusan berhasil
+            navigate('/'); // Asumsikan '/login' adalah route untuk halaman login
+        } catch (error) {
+            console.error('Gagal menghapus pengguna', error);
+        }
+    };
+
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="fixed inset-0 bg-black opacity-60"></div>
@@ -103,8 +117,8 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                     </div>
                 </div>
                 <div className='flex justify-between'>
-                    <div>
-                        <button className='px-2 py-2 bg-[#ED1A1A] text-white rounded-md'>Hapus Akun</button>
+                    <div className='flex gap-4 items-center'>
+                        <button className='px-2 py-2 bg-[#ED1A1A] text-white rounded-md' onClick={handleDeleteUser}>Hapus Akun</button>
                         <button className='px-2 py-2 bg-[#051A49] text-white rounded-md' onClick={handleSaveProfile}>Simpan</button>
                     </div>
                     <div>
