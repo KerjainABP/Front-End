@@ -22,14 +22,11 @@ const Lamaranku = () => {
     function formatCurrency(lowongan, itemId) {
         // Mencari objek lowongan berdasarkan id
         const item = lowongan.find((items) => items.id === itemId);
-
         if (!item) return "Data tidak ditemukan"; // Jika item tidak ditemukan, kembalikan pesan error
-
         // Fungsi untuk mengubah angka menjadi format mata uang
         const formatAmount = (amount) => {
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(amount);
         };
-
         // Menggunakan fungsi formatAmount untuk gajiMin dan gajiMax
         const gajiMinFormatted = formatAmount(item.gaji_dari);
         const gajiMaxFormatted = formatAmount(item.gaji_hingga);
@@ -95,7 +92,7 @@ const Lamaranku = () => {
                                         </div>
                                     </div>
                                     <div className=''>
-                                        <h1 className='text-[24px] py-4 px-6 border rounded-xl'>{item?.status === "applied"?"Diproses":""}</h1>
+                                        <h1>{item?.status === "applied" ? (<div className='text-[24px] py-4 px-6 border rounded-xl'> Diproses</div>) : (item?.status === 'diterima' ? (<div className='bg-[#378D2F] text-white text-[24px] py-4 px-6 border rounded-xl'>Diterima</div>) : (<div className="bg-[#CB4242] text-white text-[24px] py-4 px-9 border rounded-xl">Ditolak</div>))}</h1>
                                     </div>
                                 </div>
                             ))}

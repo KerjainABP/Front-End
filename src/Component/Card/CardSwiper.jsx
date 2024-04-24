@@ -17,6 +17,7 @@ const CardSwiper = () => {
   const cookie = useCookies()
   const [perusahaan, setPerusahaan] = useState([])
   const [posts, setPosts] = useState([])
+  const [kerja, setKerja] = useState(null)
 
   const searchPT = (perusahaan, post) => {
     const company = perusahaan.filter(item1 => post.some(item2 => item2.id_perusahaan === item1.id));
@@ -24,19 +25,22 @@ const CardSwiper = () => {
     return compNames;
   }
 
-  // const getPelamar = async(lowonganId) =>{
-  //   const pelamar = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/pendaftar/${lowonganId}`)
-  //   console.log(pelamar.lenth)
+  const getPelamar = (kerja, lowonganId) =>{
+    const pelamar = kerja.filter(item1 => item1.id_lowongan === lowonganId)
     
-  // }
+    
+    return pelamar.length
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/user/lowongan/all');
         const perusahaan = await axios.get('http://127.0.0.1:8000/api/user/perusahaan/all')
+        const pelamar = await axios.get(`http://127.0.0.1:8000/api/user/allkerja/get`)
         setPosts(response.data);        
         setPerusahaan(perusahaan.data);
+        setKerja(pelamar.data)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -65,7 +69,7 @@ const CardSwiper = () => {
             perusahaan={searchPT(perusahaan, [data])} // Ubah posts menjadi [data]
             slot={data.slot_posisi}
             lokasi={data.lokasi}
-            pelamar = {0}
+            pelamar = {getPelamar(kerja, data.id)}
             gajiMin = {data.gaji_dari}
             gajiMax = {data.gaji_hingga}
             />

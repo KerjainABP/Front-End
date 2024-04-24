@@ -10,8 +10,8 @@ const Navbar = () => {
         </div>
         <div className='max-md:hidden'>
             <div className='flex gap-3 lg:gap-6'>
-                <Link to={`/`}>Pekerja</Link>
-                <Link className='' to={`/perusahaan`}>Perusahaan</Link>
+                <Link to={`/`} className={`${location.pathname === "/" ?"text-slate-500 cursor-default":"text-black"}`}>Pekerja</Link>
+                <Link className={`${location.pathname === "/perusahaan" ?"text-slate-500 cursor-default":"text-black"}`} to={`/perusahaan`}>Perusahaan</Link>
             </div>
         </div>
         <div className='flex gap-4'>

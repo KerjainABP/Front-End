@@ -9,10 +9,12 @@ const NavbarLogin = (props) => {
         // Cek jika path adalah "/lihatPerusahaan", "/dashboardUser", atau dimulai dengan "/kualifikasi/"
         if (locate.pathname === "/lihatPerusahaan" ||
             locate.pathname === "/dashboardUser" ||
-            locate.pathname.startsWith("/kualifikasi/")|| locate.pathname === "/lamaranku" || locate.pathname.startsWith("/lowongan")) {
+            locate.pathname.startsWith("/kualifikasi/") || locate.pathname === "/lamaranku" || locate.pathname.startsWith("/lowongan")) {
             return "/dashboardUser";
-        } else {
-            return "/";
+        } else if (locate.pathname === "/lihatPerusahaan" ||
+            locate.pathname === "/dashboardPerusahaan" ||
+            locate.pathname.startsWith("/seleksi/")) {
+            return "/dashboardPerusahaan";
         }
     };
     return (
@@ -25,7 +27,11 @@ const NavbarLogin = (props) => {
                     <Link to={linkDestination(locate)}>Home</Link>
                     <button className='' onClick={popUpProfile} >Profile</button>
                     <Link className='' to={`/lamaranku`}>Lamaranku</Link>
-                    <Link className='' to={`/lihatPerusahaan`}>Perusahaan</Link>
+                    {locate.pathname === "/lihatPerusahaan" || locate.pathname === "/dashboardUser" || locate.pathname.startsWith("/kualifikasi/") || locate.pathname === "/lamaranku" || locate.pathname.startsWith("/lowongan")?
+                    (
+                        <Link className='' to={`/lihatPerusahaan`}>Perusahaan</Link>
+
+                    ):("")}
                 </div>
             </div>
             <div className='flex items-center gap-4'>

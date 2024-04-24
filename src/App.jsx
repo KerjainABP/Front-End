@@ -13,6 +13,7 @@ import BuatIklan from './Page/Perusahaan/BuatIklan'
 import Kualifikasi from './Page/Perusahaan/Kualifikasi'
 import Lamaranku from './Page/Dashboard/User/Lamaranku'
 import ListLowongan from './Page/Dashboard/User/ListLowongan'
+import Seleksi from './Page/Dashboard/Perusahaan/Seleksi'
 
 const App = () => {
   return (
@@ -31,8 +32,7 @@ const App = () => {
         <Route path='/kualifikasi/:id' element={<Kualifikasi/>}/>
         <Route path='/lamaranku' element={<Lamaranku/>}/>
         <Route path='/lowongan' element={<ListLowongan/>}/>
-        
-        
+        <Route path='/seleksi/:id' element={<Seleksi/>}/>
       </Routes>
     </BrowserRouter>
   )

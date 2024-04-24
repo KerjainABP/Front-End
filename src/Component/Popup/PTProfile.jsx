@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { TbX } from 'react-icons/tb';
+import { TbX, TbMapPin } from 'react-icons/tb';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 const PTProfile = ({ handleDialog, setHandleDialog }) => {
     const [userData, setUserData] = useState({
-        nama:'',
-        email:'',
-        tipe:'',
-        tahun_berdiri:'',
-        deskripsi:''
+        nama: '',
+        email: '',
+        tipe: '',
+        tahun_berdiri: '',
+        deskripsi: ''
     });
+    const [dataLowongan, setDataLowongan] = useState(null)
     const [cookies, setCookie, removeCookie] = useCookies(['perusahaanID']);
     const navigate = useNavigate();
     useEffect(() => {
@@ -19,18 +20,19 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api/pt/${userID}`);
-                console.log(response)
-                setUserData(response.data);
+                const lowongan = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/${userID}`);
+                console.log(lowongan.data)
                 setUserData({
-                    nama : response.data.nama,
+                    nama: response.data.nama,
                     email: response.data.email,
                     tahun_berdiri: response.data.tahun_berdiri,
-                    tipe:response.data.tipe,
+                    tipe: response.data.tipe,
                     deskripsi: response.data.deskripsi
                 })
+                setDataLowongan(lowongan.data)
             } catch (error) {
                 console.log(error)
-            } 
+            }
         };
 
         if (userID) {
@@ -45,7 +47,7 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
 
     const handleLogout = () => {
         removeCookie('perusahaanID', { path: '/' });
-        setUserData(null);
+        setUserData({});
         navigate('/');
     };
 
@@ -66,15 +68,34 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Email</h1>
-                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.email}/>
+                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.email} />
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
-                        <input type="text" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.tahun_berdiri}/>
+                        <h1 className='text-[20px] font-medium'>Tanggal Berdiri</h1>
+                        <input type="number" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.tahun_berdiri} />
                     </div>
-                    <div className='flex flex-col gap-2'>
-                        <h1 className='text-[20px] font-medium'>Deskripsi</h1>
-                        <textarea type="text" className='resize-none outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.deskripsi}></textarea>
+                    <div>
+                        <h1 className='text-[#031C32] font-satoshi font-bold text-[24px]'>Riwayat Iklan Pekerjaan</h1>
+                        <div className='grid grid-cols-2 gap-4'>
+                            {dataLowongan && dataLowongan.map((item, i) => (
+                                <div key={i} className='border p-3 bg-[#051A49] text-white rounded-xl'>
+                                    <div className='flex items-center gap-3 mb-3'>
+                                        <div className='w-10 h-10 bg-slate-600 rounded-full'>
+                                        </div>
+                                        <div>
+                                            <p>{item?.nama_posisi}</p>
+                                            <p>{userData?.nama}</p>
+                                        </div>
+
+
+                                    </div>
+                                    <div className='flex items-center gap-3'>
+                                        <TbMapPin className='text-[24px]'/>
+                                        <p>{item?.lokasi}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className='flex justify-between'>
