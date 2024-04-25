@@ -77,7 +77,7 @@ const ListLowongan = () => {
         <div className='font-popins min-h-[100vh]'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
             <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
-            <div className='px-[140px] my-10 '>
+            <div className='xl:px-[140px] md:my-10 max-md:pt-24 '>
                 <h1 className='text-[28px] font-bold mb-3'>Lowongan Tersedia({dataLowongan?.length})</h1>
                 <div className='flex flex-col gap-5'>
                     {dataLowongan?.map((item, index) => (
@@ -93,7 +93,7 @@ const ListLowongan = () => {
                     ))}
                 </div>
             </div>
-            <Footer className={"px-[140px]"} />
+            <Footer className={"px-5 xl:px-[140px]"} />
         </div>
     )
 }
