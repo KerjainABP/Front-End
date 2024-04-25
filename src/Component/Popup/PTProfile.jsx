@@ -44,6 +44,18 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
         setHandleDialog(!handleDialog);
 
     };
+    const handleSendPhoto = async (photoData) => {
+        const userID = cookies.perusahaanID;
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/api/pt/editptpfp/${userID}`, {
+                image: photoData
+            });
+            console.log('Foto berhasil dikirim', response.data);
+            // Tambahkan logika atau feedback tambahan jika diperlukan
+        } catch (error) {
+            console.error('Gagal mengirim foto', error);
+        }
+    };
 
     const handleLogout = () => {
         removeCookie('perusahaanID', { path: '/' });
@@ -73,6 +85,11 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Tanggal Berdiri</h1>
                         <input type="number" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.tahun_berdiri} />
+                    </div>
+                    <div>
+                        <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
+                        <input type="file" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' onChange={(e) => handleSendPhoto(e.target.files[0])} />
+                        <button onClick={() => handleSendPhoto()}>Kirim Foto</button>
                     </div>
                     <div>
                         <h1 className='text-[#031C32] font-satoshi font-bold text-[24px]'>Riwayat Iklan Pekerjaan</h1>

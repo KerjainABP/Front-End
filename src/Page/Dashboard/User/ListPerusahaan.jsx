@@ -36,14 +36,14 @@ const ListPerusahaan = () => {
     return (
         <div className='font-popins'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
-            <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
+            <NavbarLogin nama={userData?.nama} pp={userData?.profile_picture} popUpProfile={() => setShowDialog(true)} />
             <div className='xl:px-[140px] md:my-10'>
                 <div className='flex max-xl:flex-col justify-evenly items-center md:mb-[160px]'>
                     <img src={PerusahaanImage} alt="" />
                     <div className='max-sm:w-full w-[560px]'>
                         <h1 className='max-sm:text-[32px] text-[48px] font-semibold lg:mb-7'>Ikuti jejak perusahaan yang bekerja sama dengan KerjaIn</h1>
                         <button className='bg-black text-white px-8 py-4 lg:mb-10'><Link to={`/daftarPerusahaan`}>Daftar Perusahaan</Link></button>
-                        <p className='md:text-[24px] font-semibold lg:mb-8'>Buat Iklan lowongan, dan temukan individu terbaik untuk perusahaan impian anda.</p>
+                        <p className='mds:text-[24px] font-semibold lg:mb-8'>Buat Iklan lowongan, dan temukan individu terbaik untuk perusahaan impian anda.</p>
                         <ul className='flex flex-col gap-4'>
                             <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
                             <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>

@@ -47,10 +47,10 @@ const Lamaranku = () => {
                 const lamaran = await axios.get(`http://127.0.0.1:8000/api/user/lowonganstatus/${userID}`);
                 const lowongan = await axios.get(`http://127.0.0.1:8000/api/user/lowongan/all`)
                 const perusahaan = await axios.get(`http://127.0.0.1:8000/api/user/perusahaan/all`)
+                setUserData(user.data)
                 setDataPerusahaan(perusahaan.data)
                 setDataLowongan(lowongan.data)
                 setDataLamaran(lamaran.data);
-                setUserData(user.data)
             } catch (error) {
                 setError(error);
             } finally {
@@ -66,7 +66,7 @@ const Lamaranku = () => {
     return (
         <div className='font-popins'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
-            <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
+            <NavbarLogin nama={userData?.nama} pp={userData?.profile_picture} popUpProfile={() => setShowDialog(true)} />
             <div>
                 {isLoading ? (
                     <p>Loading...</p>
@@ -92,7 +92,7 @@ const Lamaranku = () => {
                                         </div>
                                     </div>
                                     <div className=''>
-                                        <h1 className='text-center'>{item?.status === "applied" ? (<div className='text-[24px] py-4 px-6 border rounded-xl'> Diproses</div>) : (item?.status === 'diterima' ? (<div className='bg-[#378D2F] text-white text-[24px] py-4 px-6 border rounded-xl'>Diterima</div>) : (<div className="bg-[#CB4242] text-white text-[24px] py-4 px-9 border rounded-xl">Ditolak</div>))}</h1>
+                                        <h1 className='text-center'>{item?.status === "applied" ? (<div className='text-[24px] py-4 px-6 border rounded-xl'> Diproses</div>) : (item?.status === 'diterima' ? (<div className='bg-[#378D2F] text-white text-[24px] py-4 px-6 border rounded-xl'>Diterima</div>) : (item?.status === 'ditolak'?(<div className="bg-[#CB4242] text-white text-[24px] py-4 px-9 border rounded-xl">Ditolak</div>):(<div className="bg-[#051A49] text-white text-[24px] py-4 px-9 border rounded-xl">Selesai</div>)))}</h1>
                                     </div>
                                 </div>
                             ))}

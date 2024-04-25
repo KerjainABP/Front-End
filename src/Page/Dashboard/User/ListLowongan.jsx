@@ -76,7 +76,7 @@ const ListLowongan = () => {
     return (
         <div className='font-popins min-h-[100vh]'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
-            <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
+            <NavbarLogin nama={userData?.nama} pp={userData?.profile_picture} popUpProfile={() => setShowDialog(true)} />
             <div className='xl:px-[140px] md:my-10 max-md:pt-24 '>
                 <h1 className='text-[28px] font-bold mb-3'>Lowongan Tersedia({dataLowongan?.length})</h1>
                 <div className='flex flex-col gap-5'>

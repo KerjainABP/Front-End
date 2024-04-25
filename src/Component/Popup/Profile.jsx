@@ -88,6 +88,19 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
         }
     };
 
+    const handleSendPhoto = async (photoData) => {
+        const userID = cookies.userID;
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/api/user/editpfp/${userID}`, {
+                photo: photoData
+            });
+            console.log('Foto berhasil dikirim', response.data);
+            // Tambahkan logika atau feedback tambahan jika diperlukan
+        } catch (error) {
+            console.error('Gagal mengirim foto', error);
+        }
+    };
+
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="fixed inset-0 bg-black opacity-60"></div>
@@ -110,6 +123,11 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
                         <input type="date" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.tanggalLahir} onChange={(e) => setUserData({...userData, tanggalLahir: e.target.value})} />
+                    </div>
+                    <div>
+                        <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
+                        <input type="file" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' onChange={(e) => handleSendPhoto(e.target.files[0])} />
+                        <button onClick={() => handleSendPhoto()}>Kirim Foto</button>
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Deskripsi</h1>

@@ -48,7 +48,7 @@ const DashboardUser = () => {
   return (
     <div className='font-popins'>
       {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
-      <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
+      <NavbarLogin nama={userData?.nama} pp={userData?.profile_picture} popUpProfile={() => setShowDialog(true)} />
       <div>
         {isLoading ? (
           <p>Loading...</p>
