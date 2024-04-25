@@ -73,16 +73,16 @@ const Lamaranku = () => {
                 ) : error ? (
                     <p>Error: {error.message}</p>
                 ) : userData ? (
-                    <div className='px-[140px] '>
+                    <div className='px-5 md:px-[140px] max-md:pt-28'>
                         <h1 className='text-[32px] font-bold'>Lamaranku</h1>
-                        <div className='flex flex-col gap-4 items-center'>
+                        <div className='flex flex-col gap-4 xl:items-center '>
                             {dataLamaran.map((item) => (
-                                <div className='border px-8 py-4 rounded-xl flex justify-between items-end w-[50%]'>
+                                <div className='border px-8 py-4 rounded-xl flex max-xl:flex-col xl:justify-between xl:items-end xl:w-[50%] max-xl:gap-5'>
                                     <div>
-                                        <div className='mb-3'>
+                                        <div className='mb-3 max-xl:flex xl:items-center gap-3'>
                                             <div className='w-10 h-10 bg-slate-600 rounded-full mb-2'></div>
                                             <div>
-                                                <h1 className='text-[20px] font-semibold leading-5'>{item?.nama_posisi}</h1>
+                                                <h1 className='text-[20px] w-full font-semibold leading-5'>{item?.nama_posisi}</h1>
                                                 <p className='text-[20px]'>{searchPT(dataPerusahaan, [item])}</p>
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@ const Lamaranku = () => {
                                         </div>
                                     </div>
                                     <div className=''>
-                                        <h1>{item?.status === "applied" ? (<div className='text-[24px] py-4 px-6 border rounded-xl'> Diproses</div>) : (item?.status === 'diterima' ? (<div className='bg-[#378D2F] text-white text-[24px] py-4 px-6 border rounded-xl'>Diterima</div>) : (<div className="bg-[#CB4242] text-white text-[24px] py-4 px-9 border rounded-xl">Ditolak</div>))}</h1>
+                                        <h1 className='text-center'>{item?.status === "applied" ? (<div className='text-[24px] py-4 px-6 border rounded-xl'> Diproses</div>) : (item?.status === 'diterima' ? (<div className='bg-[#378D2F] text-white text-[24px] py-4 px-6 border rounded-xl'>Diterima</div>) : (<div className="bg-[#CB4242] text-white text-[24px] py-4 px-9 border rounded-xl">Ditolak</div>))}</h1>
                                     </div>
                                 </div>
                             ))}
