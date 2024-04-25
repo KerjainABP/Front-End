@@ -88,18 +88,22 @@ const Kualifikasi = () => {
         <div>
           {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
           <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
-          <div className=' px-[144px] text-[#051A49] pt-9 flex justify-between pb-40'>
-            <div className='w-[40vw]'>
+          <div className='px-5 xl:px-[144px] text-[#051A49] pt-28 md:pt-9 flex max-md:flex-col md:justify-between pb-40'>
+            <div className='xl:w-[40vw]'>
               <div className='flex flex-col gap-3'>
-                <h1 className='font-bold text-[36px]'>{lowonganData?.nama_posisi}</h1>
-                <p className='flex items-center text-[32px] font-semibold gap-3'><TbBuilding /> {perusahaanData}</p>
-                <p className='flex items-center text-[32px] font-semibold gap-3'><TbMapPin /> {lowonganData?.lokasi}</p>
+                <h1 className='font-bold text-[28px] md:text-[36px]'>{lowonganData?.nama_posisi}</h1>
+                <p className='flex items-center text-[20px] md:text-[32px] font-semibold gap-3'><TbBuilding /> {perusahaanData}</p>
+                <p className='flex items-center text-[20px] md:text-[32px] font-semibold gap-3'><TbMapPin /> {lowonganData?.lokasi}</p>
+                <div className='xl:hidden'>
+                  <h1 className='text-[20px] md:text-[32px] font-semibold'>Kontrak</h1>
+                  <p className='md:text-[24px]'>{formatCurrency(lowonganData?.gaji_dari)} - {formatCurrency(lowonganData?.gaji_hingga)}</p>
+                </div>
               </div>
               <div className='flex flex-col gap-4 mt-14'>
-                <h1 className='text-[24px] font-semibold'>Kualifikasi dan Pengalaman</h1>
+                <h1 className='text-[20px] md:text-[24px] font-semibold'>Kualifikasi dan Pengalaman</h1>
                 <ul className='list-disc list-inside flex flex-col gap-2 '>
                   {kualifikasiData.map((item, index) => (
-                    <li key={index} className='text-[20px]'>{item}</li>
+                    <li key={index} className='md:text-[20px]'>{item}</li>
 
                   ))}
                 </ul>
@@ -107,11 +111,14 @@ const Kualifikasi = () => {
               </div>
               <div className='mt-10'>
                 <h1 className='text-[24px] font-semibold'>Deskripsi</h1>
-                <p className='text-[20px]'>{lowonganData?.deskripsi_pekerjaan}</p>
+                <p className='md:text-[20px]'>{lowonganData?.deskripsi_pekerjaan}</p>
+              </div>
+              <div className='xl:hidden'>
+                <button className='bg-[#051A49] w-full py-3 text-white rounded-xl' onClick={handleSubmit}>Lamar Kerjaan</button>
               </div>
             </div>
-            <div className='flex flex-col justify-between'>
-              <div>
+            <div className='flex flex-col justify-between max-xl:hidden'>
+              <div className=''>
                 <h1 className='text-[32px] font-semibold'>Kontrak</h1>
                 <p className='text-[24px]'>{formatCurrency(lowonganData?.gaji_dari)} - {formatCurrency(lowonganData?.gaji_hingga)}</p>
               </div>
@@ -120,7 +127,7 @@ const Kualifikasi = () => {
               </div>
             </div>
           </div>
-          <Footer className={"absolute bottom-0 w-full px-[144px]"} />
+          <Footer className={"absolute bottom-0 w-full px-5 xl:px-[144px]"} />
         </div>
       )}
 
