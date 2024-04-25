@@ -27,8 +27,6 @@ const CardSwiper = () => {
 
   const getPelamar = (kerja, lowonganId) =>{
     const pelamar = kerja.filter(item1 => item1.id_lowongan === lowonganId)
-    
-    
     return pelamar.length
   }
 
@@ -51,15 +49,33 @@ const CardSwiper = () => {
   return (
     <>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            navigation:false,
+          },
+          
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+            navigation:true
+  
+          },
+          1000:{
+            slidesPerView:3,
+            spaceBetween:20,
+            navigation:true,
+          }
+        }}
+        
         pagination={{
           clickable: true,
         }}
-        navigation={true}
+        navigation={window.innerWidth > 1000 ? true : false}
         loop={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper h-[300px]  pl-20"
+        className="mySwiper h-[400px] xl:h-[300px] xl:pl-20"
       >
         {posts.map((data) => (
           <SwiperSlide key={data.id}>

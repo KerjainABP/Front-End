@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Perusahaan = () => {
   return (
-    <div className='font-popins bg-[#e5e5e5] min-h-[100vh]'>
+    <div className='font-popins bg-[#e5e5e5] min-h-[100vh] '>
         <Navbar/>
         <div className='flex 2xl:justify-around flex-col-reverse items-center pt-28 px-5 py-4 gap-6 2xl:flex-row 2xl:px-[144px] lg:pt-40 lg:py-6 '>
           <div>

@@ -15,12 +15,12 @@ const CardJob = (props) => {
     }
     return (
         <NavLink to={`/kualifikasi/${id}`}>
-            <button className='bg-[#051A49] px-6 py-5 w-[400px] text-white rounded-2xl'>
+            <button className='bg-[#051A49] px-6 py-5 w-full max-xl:flex flex-col max-xl:h-[300px] xl:w-[400px] text-white rounded-2xl'>
                 <div className='flex items-center gap-5 mb-5'>
                     <div className='border w-10 h-10 rounded-full bg-white'>
                     </div>
                     <div>
-                        <p className='text-[20px] font-semibold'>{pekerjaan}</p>
+                        <p className=' md:text-[20px] font-semibold text-left'>{pekerjaan}</p>
                         <p className='font-medium text-left'>{perusahaan}</p>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ const CardJob = (props) => {
                     </div>
                     <div className='flex items-center gap-2'>
                         <PiMoney className='text-[28px]' />
-                        <p>{formatCurrency(gajiMin)} - {formatCurrency(gajiMax)} </p>
+                        <p className='text-[12px]'>{formatCurrency(gajiMin)} - {formatCurrency(gajiMax)} </p>
                     </div>
                 </div>
 
