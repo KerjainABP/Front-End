@@ -37,17 +37,17 @@ const ListPerusahaan = () => {
         <div className='font-popins'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
             <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
-            <div className='px-[140px] my-10'>
-                <div className='flex justify-evenly items-center mb-[160px]'>
+            <div className='xl:px-[140px] md:my-10'>
+                <div className='flex max-xl:flex-col justify-evenly items-center md:mb-[160px]'>
                     <img src={PerusahaanImage} alt="" />
-                    <div className='w-[560px]'>
-                        <h1 className='text-[48px] font-semibold lg:mb-7'>Ikuti jejak perusahaan yang bekerja sama dengan KerjaIn</h1>
+                    <div className='max-sm:w-full w-[560px]'>
+                        <h1 className='max-sm:text-[32px] text-[48px] font-semibold lg:mb-7'>Ikuti jejak perusahaan yang bekerja sama dengan KerjaIn</h1>
                         <button className='bg-black text-white px-8 py-4 lg:mb-10'><Link to={`/daftarPerusahaan`}>Daftar Perusahaan</Link></button>
-                        <p className='text-[24px] font-semibold lg:mb-8'>Buat Iklan lowongan, dan temukan individu terbaik untuk perusahaan impian anda.</p>
+                        <p className='md:text-[24px] font-semibold lg:mb-8'>Buat Iklan lowongan, dan temukan individu terbaik untuk perusahaan impian anda.</p>
                         <ul className='flex flex-col gap-4'>
-                            <li className='text-[24px] flex items-center gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
-                            <li className='text-[24px] flex items-center gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
-                            <li className='text-[24px] flex items-center gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
+                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
+                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
+                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
                         </ul>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ const ListPerusahaan = () => {
                     </div>
                 </div>
             </div>
-            <Footer className={"px-[140px]"}/>
+            <Footer className={"xl:px-[140px]"}/>
         </div>
     )
 }
