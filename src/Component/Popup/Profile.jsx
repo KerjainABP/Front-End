@@ -90,9 +90,13 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
 
     const handleSendPhoto = async (photoData) => {
         const userID = cookies.userID;
+        const dataImg = new FormData()
+        dataImg.append('image',photoData)
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/user/editpfp/${userID}`, {
-                photo: photoData
+            const response = await axios.post(`http://127.0.0.1:8000/api/user/editpfp/${userID}`, dataImg ,{
+                headers:{
+                    "Custom-Header":"value"
+                }
             });
             console.log('Foto berhasil dikirim', response.data);
             // Tambahkan logika atau feedback tambahan jika diperlukan
