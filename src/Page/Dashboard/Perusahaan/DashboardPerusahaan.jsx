@@ -109,10 +109,10 @@ const DashboardPerusahaan = () => {
                             {getPelamar(kerja, data.id)} / {data.slot_posisi}
                           </td>
                           <td className="px-6 py-4">
-                            <NavLink to={`/seleksi/${data.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Kualifikasi</NavLink>
+                            <NavLink to={`/seleksi/${data.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Seleksi</NavLink>
                           </td>
                           <td className="px-6 py-4">
-                            <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <NavLink to={`/editLowongan/${data.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</NavLink>
                           </td>
                         </tr>
                       ))}

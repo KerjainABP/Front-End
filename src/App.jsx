@@ -14,6 +14,7 @@ import Kualifikasi from './Page/Perusahaan/Kualifikasi'
 import Lamaranku from './Page/Dashboard/User/Lamaranku'
 import ListLowongan from './Page/Dashboard/User/ListLowongan'
 import Seleksi from './Page/Dashboard/Perusahaan/Seleksi'
+import EditLowongan from './Page/Dashboard/Perusahaan/EditLowongan'
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path='/lamaranku' element={<Lamaranku/>}/>
         <Route path='/lowongan' element={<ListLowongan/>}/>
         <Route path='/seleksi/:id' element={<Seleksi/>}/>
+        <Route path='/editLowongan/:id' element={<EditLowongan/>}/>
       </Routes>
     </BrowserRouter>
   )
