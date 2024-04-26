@@ -57,7 +57,7 @@ const DashboardUser = () => {
         ) : userData ? (
           <div className='px-[140px] max-md:px-5 max-md:pt-24 max-xl:px-7'>
             <div className='w-full lg:mb-14 md:h-[340px] xl:h-[540px] bg-cover bg-center rounded-3xl flex justify-center items-center px-7 2xl:px-[300px]' style={{ backgroundImage: `url(${Background})` }}>
-              <div className='bg-white xl:w-full xl:h-[100px] flex items-center gap-2 xl:gap-20 xl:px-8 max-xl:flex-col max-xl:py-9 max-xl:px-4'>
+              <div className='bg-white xl:w-full xl:h-[200px] flex items-center gap-2 xl:gap-20 xl:px-8 max-xl:flex-col max-xl:py-9 max-xl:px-4 xl:rounded-2xl'>
                 <div className='flex items-center mb-4'>
                   <div className='flex flex-col items-center gap-2 xl:gap-5'>
                     <p className='md:text-[20px]'>Lokasi</p>
@@ -69,7 +69,7 @@ const DashboardUser = () => {
                   </div>
                 </div>
                 <div className='flex w-full'>
-                  <button onClick={handleSearch} className='w-full bg-[#072462] text-white py-3 px xl:text-[20px] flex gap-3 items-center justify-center max-sm:rounded-lg'><TbSearch /> Cari</button>
+                  <button onClick={handleSearch} className='w-full bg-[#072462] text-white py-3 px xl:text-[20px] flex gap-3 items-center justify-center rounded-lg '><TbSearch /> Cari</button>
                 </div>
               </div>
             </div>

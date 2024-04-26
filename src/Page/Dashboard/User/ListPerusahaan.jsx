@@ -45,9 +45,9 @@ const ListPerusahaan = () => {
                         <button className='bg-black text-white px-8 py-4 lg:mb-10'><Link to={`/daftarPerusahaan`}>Daftar Perusahaan</Link></button>
                         <p className='mds:text-[24px] font-semibold lg:mb-8'>Buat Iklan lowongan, dan temukan individu terbaik untuk perusahaan impian anda.</p>
                         <ul className='flex flex-col gap-4'>
-                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
-                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
-                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifiaksi</li>
+                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Aman dan Tersertifikasi</li>
+                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Fleksibel dan Mudah</li>
+                            <li className='md:text-[24px] flex items-center gap-2 md:gap-5'><TiInputChecked className='text-[32px]' /> Gratis dan Tidak Dipungut Biaya</li>
                         </ul>
                     </div>
                 </div>

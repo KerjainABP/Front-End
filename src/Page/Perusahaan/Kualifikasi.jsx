@@ -16,15 +16,8 @@ const Kualifikasi = () => {
   const [perusahaanData, setPerusahaanData] = useState(null)
   const [showDialog, setShowDialog] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [showModal, setShowModal] = useState(false);
   const [cookies] = useCookies(['userID']);
-  const searchPT = (perusahaan, post) => {
-    const company = perusahaan.filter(item1 => item1.id === post.id_perusahaan);
-    let compName
-    company.map((item) => {
-      compName = item.nama
-    })
-    return compName
-  }
   function formatCurrency(amount) {
     // Mengubah angka menjadi string dan membalikkan string tersebut
     const reversedAmount = String(amount).split('').reverse().join('');
@@ -58,6 +51,12 @@ const Kualifikasi = () => {
     }
   }, [cookies.userID]); // Memperbarui data saat userID berubah
 
+  const handleModal = () => {
+    setShowModal(true);
+  }
+  const handleCloseModal = () => {
+    setShowModal(false);
+  }
   const handleSubmit = async () => {
     try {
       const applyData = {
@@ -114,7 +113,7 @@ const Kualifikasi = () => {
                 <p className='md:text-[20px]'>{lowonganData?.deskripsi_pekerjaan}</p>
               </div>
               <div className='xl:hidden'>
-                <button className='bg-[#051A49] w-full py-3 text-white rounded-xl' onClick={handleSubmit}>Lamar Kerjaan</button>
+                <button className='bg-[#051A49] w-full py-3 text-white rounded-xl' onClick={handleModal}>Lamar Kerjaan</button>
               </div>
             </div>
             <div className='flex flex-col justify-between max-xl:hidden'>
@@ -123,7 +122,7 @@ const Kualifikasi = () => {
                 <p className='text-[24px]'>{formatCurrency(lowonganData?.gaji_dari)} - {formatCurrency(lowonganData?.gaji_hingga)}</p>
               </div>
               <div>
-                <button className='bg-[#051A49] w-full py-3 text-white rounded-xl' onClick={handleSubmit}>Lamar Kerjaan</button>
+                <button className='bg-[#051A49] w-full py-3 text-white rounded-xl' onClick={handleModal}>Lamar Kerjaan</button>
               </div>
             </div>
           </div>
@@ -131,6 +130,19 @@ const Kualifikasi = () => {
         </div>
       )}
 
+      {/* Modal component */}
+      {showModal && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4">Konfirmasi Lamar Pekerjaan</h2>
+            <p>Apakah Anda yakin ingin melamar pekerjaan ini?</p>
+            <div className="mt-4 flex justify-end">
+              <button className="bg-[#051A49] text-white px-4 py-2 rounded-md mr-4" onClick={handleSubmit}>Ya</button>
+              <button className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md" onClick={handleCloseModal}>Batal</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

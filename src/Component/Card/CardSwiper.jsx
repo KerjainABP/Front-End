@@ -14,10 +14,11 @@ import CardJob from './CardJob';
 import { useCookies } from 'react-cookie';
 
 const CardSwiper = () => {
-  const cookie = useCookies()
+  const [cookies] = useCookies(['userID']);
   const [perusahaan, setPerusahaan] = useState([])
   const [posts, setPosts] = useState([])
   const [kerja, setKerja] = useState(null)
+  const [isApplied, setIsApplied] = useState(null)
 
   const searchPT = (perusahaan, post) => {
     const company = perusahaan.filter(item1 => post.some(item2 => item2.id_perusahaan === item1.id));
@@ -25,20 +26,23 @@ const CardSwiper = () => {
     return compNames;
   }
 
-  const getPelamar = (kerja, lowonganId) =>{
+  const getPelamar = (kerja, lowonganId) => {
     const pelamar = kerja.filter(item1 => item1.id_lowongan === lowonganId)
     return pelamar.length
   }
 
   useEffect(() => {
+    const userID = cookies.userID;
     const fetchData = async () => {
       try {
+
         const response = await axios.get('https://kerjainbe-production.up.railway.app/api/user/lowongan/all');
         const perusahaan = await axios.get('https://kerjainbe-production.up.railway.app/api/user/perusahaan/all')
-        const pelamar = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/allkerja/get`)
-        setPosts(response.data);        
+        const kerjas = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/allkerja/get`)
+        setPosts(response.data);
         setPerusahaan(perusahaan.data);
-        setKerja(pelamar.data)
+        setKerja(kerjas.data)
+        setIsApplied(kerjas.data.find(item => item.id_user === userID && item.status !== 'selesai'))
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -53,22 +57,22 @@ const CardSwiper = () => {
           320: {
             slidesPerView: 1,
             spaceBetween: 20,
-            navigation:false,
+
           },
-          
+
           640: {
             slidesPerView: 2,
             spaceBetween: 40,
-            navigation:true
-  
+
+
           },
-          1000:{
-            slidesPerView:3,
-            spaceBetween:20,
-            navigation:true,
+          1000: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+
           }
         }}
-        
+
         pagination={{
           clickable: true,
         }}
@@ -79,16 +83,18 @@ const CardSwiper = () => {
       >
         {posts.map((data) => (
           <SwiperSlide key={data.id}>
-            <CardJob 
-            id={data.id} 
-            pekerjaan={data.nama_posisi} 
-            perusahaan={searchPT(perusahaan, [data])} // Ubah posts menjadi [data]
-            slot={data.slot_posisi}
-            lokasi={data.lokasi}
-            pelamar = {getPelamar(kerja, data.id)}
-            gajiMin = {data.gaji_dari}
-            gajiMax = {data.gaji_hingga}
-            />
+            {isApplied !== null ? (
+              <CardJob
+                id={data.id}
+                pekerjaan={data.nama_posisi}
+                perusahaan={searchPT(perusahaan, [data])}
+                slot={data.slot_posisi}
+                lokasi={data.lokasi}
+                pelamar={getPelamar(kerja, data.id)}
+                gajiMin={data.gaji_dari}
+                gajiMax={data.gaji_hingga}
+              />
+            ) : null}
           </SwiperSlide>
         ))}
       </Swiper>
@@ -97,3 +103,4 @@ const CardSwiper = () => {
 }
 
 export default CardSwiper
+
