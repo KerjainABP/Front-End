@@ -69,9 +69,8 @@ const Lowonganku = () => {
                 <h1 className='max-md:pt-28 text-[28px] md:text-[40px] font-bold'>Lowonganku</h1>
                 <div className='flex flex-col gap-4'>
                     {dataLowongan.map((item,i)=>(
-                        <div className='border px-6 py-3' key={item?.id}>
+                        <div className='border px-6 py-3 rounded-md' key={item?.id}>
                             <div className='flex md:flex-col max-md:items-center  gap-2'>
-                                <div className='bg-slate-500 w-10 h-10 rounded-full'></div>
                                 <div>
                                     <p className='font-bold text-[20px]'>{item?.nama_posisi}</p>
                                     <p className='font-medium text-[20px]'>{userData?.nama}</p>

@@ -17,8 +17,6 @@ const CardJob = (props) => {
         <NavLink to={`/kualifikasi/${id}`}>
             <button className='bg-[#051A49] px-6 py-5 w-full max-xl:flex flex-col max-xl:h-[300px] xl:w-[400px] text-white rounded-2xl'>
                 <div className='flex items-center gap-5 mb-5'>
-                    <div className='border w-10 h-10 rounded-full bg-white'>
-                    </div>
                     <div>
                         <p className=' md:text-[20px] font-semibold text-left'>{pekerjaan}</p>
                         <p className='font-medium text-left'>{perusahaan}</p>

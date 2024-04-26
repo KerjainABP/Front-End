@@ -128,11 +128,6 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                         <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
                         <input type="date" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.tanggalLahir} onChange={(e) => setUserData({...userData, tanggalLahir: e.target.value})} />
                     </div>
-                    <div>
-                        <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
-                        <input type="file" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' onChange={(e) => handleSendPhoto(e.target.files[0])} />
-                        <button onClick={() => handleSendPhoto()}>Kirim Foto</button>
-                    </div>
                     <div className='flex flex-col gap-2'>
                         <h1 className='text-[20px] font-medium'>Deskripsi</h1>
                         <textarea type="text" className='resize-none outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.deskripsi} onChange={(e) => setUserData({...userData, deskripsi: e.target.value})}></textarea>

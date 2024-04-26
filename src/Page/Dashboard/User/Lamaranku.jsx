@@ -66,7 +66,7 @@ const Lamaranku = () => {
     return (
         <div className='font-popins'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
-            <NavbarLogin nama={userData?.nama} pp={userData?.profile_picture} popUpProfile={() => setShowDialog(true)} />
+            <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
             <div>
                 {isLoading ? (
                     <p>Loading...</p>
@@ -79,8 +79,7 @@ const Lamaranku = () => {
                             {dataLamaran.map((item) => (
                                 <div className='border px-8 py-4 rounded-xl flex max-xl:flex-col xl:justify-between xl:items-end xl:w-[50%] max-xl:gap-5'>
                                     <div>
-                                        <div className='mb-3 max-xl:flex xl:items-center gap-3'>
-                                            <div className='w-10 h-10 bg-slate-600 rounded-full mb-2'></div>
+                                        <div className='mb-3 max-xl:flex xl:items-center gap-3'>                                    
                                             <div>
                                                 <h1 className='text-[20px] w-full font-semibold leading-5'>{item?.nama_posisi}</h1>
                                                 <p className='text-[20px]'>{searchPT(dataPerusahaan, [item])}</p>

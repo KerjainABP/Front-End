@@ -87,12 +87,9 @@ const Seleksi = () => {
                             {dataLowongan.map((item) => (
                                 <div key={item.id} className='border rounded-xl p-[30px]'>
                                     <div className='mb-5' >
-                                        <div className='bg-slate-600 w-20 h-20 rounded-full'>
-
-                                        </div>
                                         <div>
                                             <p className='text-[20px] font-bold'>{item.nama_posisi}</p>
-                                            <p className='text-[18px] '>Perusahaan</p>
+
                                         </div>
                                     </div>
                                     <p className='text-[20px] font-light'>{item.lokasi}</p>

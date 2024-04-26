@@ -90,19 +90,13 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
                         <h1 className='text-[20px] font-medium'>Tanggal Berdiri</h1>
                         <input type="number" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData?.tahun_berdiri} />
                     </div>
-                    <div>
-                        <h1 className='text-[20px] font-medium'>Tanggal Lahir</h1>
-                        <input type="file" className='outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' onChange={(e) => handleSendPhoto(e.target.files[0])} />
-                        <button onClick={() => handleSendPhoto()}>Kirim Foto</button>
-                    </div>
+                    
                     <div>
                         <h1 className='text-[#031C32] font-satoshi font-bold text-[24px]'>Riwayat Iklan Pekerjaan</h1>
                         <div className='grid grid-cols-2 gap-4'>
                             {dataLowongan && dataLowongan.map((item, i) => (
                                 <div key={i} className='border p-3 bg-[#051A49] text-white rounded-xl'>
                                     <div className='flex items-center gap-3 mb-3'>
-                                        <div className='w-10 h-10 bg-slate-600 rounded-full'>
-                                        </div>
                                         <div>
                                             <p>{item?.nama_posisi}</p>
                                             <p>{userData?.nama}</p>

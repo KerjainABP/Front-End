@@ -36,7 +36,7 @@ const ListPerusahaan = () => {
     return (
         <div className='font-popins'>
             {showDialog && (<EditProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
-            <NavbarLogin nama={userData?.nama} pp={userData?.profile_picture} popUpProfile={() => setShowDialog(true)} />
+            <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
             <div className='xl:px-[140px] md:my-10'>
                 <div className='flex max-xl:flex-col justify-evenly items-center md:mb-[160px]'>
                     <img src={PerusahaanImage} alt="" />
