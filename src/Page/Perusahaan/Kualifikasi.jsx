@@ -39,9 +39,9 @@ const Kualifikasi = () => {
     const userID = cookies.userID;
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/user/${userID}`);
-        const lowongan = await axios.get(`http://127.0.0.1:8000/api/user/lowongan/${id}`);
-        const perusahaan = await axios.get('http://127.0.0.1:8000/api/user/perusahaan/all');
+        const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/${userID}`);
+        const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/lowongan/${id}`);
+        const perusahaan = await axios.get('https://kerjainbe-production.up.railway.app/api/user/perusahaan/all');
         setPerusahaanData(perusahaan.data.find(item => item.id === lowongan.data.id_perusahaan)?.nama)
         setLowongan(lowongan.data)
         setUserData(response.data);
@@ -64,7 +64,7 @@ const Kualifikasi = () => {
         id_user: cookies.userID,
         id_lowongan: id,
       };
-      const response = await axios.post(`http://127.0.0.1:8000/api/user/apply`, applyData);
+      const response = await axios.post(`https://kerjainbe-production.up.railway.app/api/user/apply`, applyData);
       if (response.status === 201) {
         alert('Berhasil melamar pekerjaan');
         navigate('/dashboardUser')

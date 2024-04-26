@@ -29,9 +29,9 @@ const Pekerjaku = () => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/user/lowongan/${id}`);
-                const pelamar = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/pegawai/${id}`)
-                const perusahaan = await axios.get(`http://127.0.0.1:8000/api/pt/${perusahaanID}`)
+                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/lowongan/${id}`);
+                const pelamar = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/pegawai/${id}`)
+                const perusahaan = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/${perusahaanID}`)
                 
                 setPerusahaan(perusahaan.data)
                 setDataLowongan([response.data]);
@@ -51,7 +51,7 @@ const Pekerjaku = () => {
 
     const handleTolak = (idUser) => {
         const idLowongan = id; // Menggunakan id dari useParams untuk idLowongan
-        axios.put(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/selesai/${idLowongan}/${idUser}`)
+        axios.put(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/selesai/${idLowongan}/${idUser}`)
             .then(response => {
                 console.log(response)
             })

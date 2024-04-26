@@ -28,9 +28,9 @@ const DashboardPerusahaan = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/pt/${perusahaanID}`);
-        const lowongan = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/${perusahaanID}`)
-        const pelamar = await axios.get(`http://127.0.0.1:8000/api/user/allkerja/get`)
+        const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/${perusahaanID}`);
+        const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/${perusahaanID}`)
+        const pelamar = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/allkerja/get`)
         setUserData(response.data);
         setDataLowongan(lowongan.data)
         setKerja(pelamar.data)
@@ -53,7 +53,7 @@ const DashboardPerusahaan = () => {
   return (
     <div className='font-popins'>
       {showDialog && (<PTProfile handleDialog={showDialog} setHandleDialog={setShowDialog} />)}
-      <NavbarLogin nama={userData?.nama} popUpProfile={() => setShowDialog(true)} />
+      <NavbarLogin nama={userData?.nama}  popUpProfile={() => setShowDialog(true)} />
       <div>
         {isLoading ? (
           <p>Loading...</p>

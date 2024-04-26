@@ -19,8 +19,8 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/pt/${userID}`);
-                const lowongan = await axios.get(`http://127.0.0.1:8000/api/pt/lowonganperusahaan/${userID}`);
+                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/${userID}`);
+                const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/${userID}`);
                 console.log(lowongan.data)
                 setUserData({
                     nama: response.data.nama,
@@ -46,9 +46,13 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
     };
     const handleSendPhoto = async (photoData) => {
         const userID = cookies.perusahaanID;
+        const dataImg = new FormData()
+        dataImg.append('image',photoData)
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/pt/editptpfp/${userID}`, {
-                image: photoData
+            const response = await axios.post(`https://kerjainbe-production.up.railway.app/api/pt/editptpfp/${userID}`, dataImg,{
+                headers:{
+                    "Custom-Header":"value"
+                }
             });
             console.log('Foto berhasil dikirim', response.data);
             // Tambahkan logika atau feedback tambahan jika diperlukan

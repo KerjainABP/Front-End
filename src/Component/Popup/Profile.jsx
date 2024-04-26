@@ -17,7 +17,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/user/${userID}`);
+                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/${userID}`);
                 setUserData(response.data);
                 setUserData({
                     nama: response.data.nama,
@@ -58,7 +58,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
     const handleSaveProfile = async () => {
         const userID = cookies.userID;
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/user/edit/${userID}`, {
+            const response = await axios.put(`https://kerjainbe-production.up.railway.app/api/user/edit/${userID}`, {
                 nama:userData.nama,
                 email:userData.email,
                 tanggal_lahir: userData.tanggalLahir,
@@ -77,7 +77,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
     const handleDeleteUser = async () => {
         const userID = cookies.userID;
         try {
-            await axios.delete(`http://127.0.0.1:8000/api/deleteuser/${userID}`);
+            await axios.delete(`https://kerjainbe-production.up.railway.app/api/deleteuser/${userID}`);
             console.log('Pengguna berhasil dihapus');
             // Menghapus cookie 'userID'
             removeCookie('userID', { path: '/' });
@@ -93,7 +93,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
         const dataImg = new FormData()
         dataImg.append('image',photoData)
         try {
-            const response = await axios.post(`http://127.0.0.1:8000/api/user/editpfp/${userID}`, dataImg ,{
+            const response = await axios.post(`https://kerjainbe-production.up.railway.app/api/user/editpfp/${userID}`, dataImg ,{
                 headers:{
                     "Custom-Header":"value"
                 }

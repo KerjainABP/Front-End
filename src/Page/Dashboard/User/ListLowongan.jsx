@@ -47,9 +47,9 @@ const ListLowongan = () => {
             const search = queryParams.get('tipe');
             const searchLokasi = queryParams.get('lokasi');
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/user/${userID}`);
-                const lowongan = await axios.get(`http://127.0.0.1:8000/api/user/lowongan/all`);
-                const perusahaan = await axios.get(`http://127.0.0.1:8000/api/user/perusahaan/all`);
+                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/${userID}`);
+                const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/lowongan/all`);
+                const perusahaan = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/perusahaan/all`);
                 
                 let filteredLowongan = lowongan.data;
                 // Filter berdasarkan tipe jika parameter tipe ada
