@@ -41,8 +41,9 @@ const DashboardUser = () => {
   }, [cookies.userID]); // Memperbarui data saat userID berubah
   const handleSearch = (e) => {
     e.preventDefault();
-    // Menggunakan navigate untuk mengalihkan ke listLowongan dengan searchTerm dan lokasi
-    navigate(`/lowongan?tipe=${searchTerm}&lokasi=${location}`);
+    if (e.key === 'Enter' || e.type === 'click') {
+      navigate(`/lowongan?tipe=${searchTerm}&lokasi=${location}`);
+    }
   };
 
   return (
@@ -61,15 +62,15 @@ const DashboardUser = () => {
                 <div className='flex items-center mb-4'>
                   <div className='flex flex-col items-center gap-2 xl:gap-5'>
                     <p className='md:text-[20px]'>Lokasi</p>
-                    <input className='xl:w-[300px] text-center outline-none border-none' type="text" placeholder='Cari Lokasi' value={location} onChange={(e) => setLocation(e.target.value)} />
+                    <input className='xl:w-[300px] text-center outline-none border-none' type="text" placeholder='Cari Lokasi' value={location} onChange={(e) => setLocation(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)} />
                   </div>
                   <div className='flex flex-col items-center gap-2 xl:gap-5'>
                     <p className='md:text-[20px]'>Tipe</p>
-                    <input className='xl:w-[300px] text-center outline-none border-none' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" placeholder='Cari Tipe Pekerjaan' />
+                    <input className='xl:w-[300px] text-center outline-none border-none' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" placeholder='Cari Tipe Pekerjaan' onKeyDown={(e) => e.key === 'Enter' && handleSearch(e)}/>
                   </div>
                 </div>
                 <div className='flex w-full'>
-                  <button onClick={handleSearch} className='w-full bg-[#072462] text-white py-3 px xl:text-[20px] flex gap-3 items-center justify-center rounded-lg '><TbSearch /> Cari</button>
+                  <button onClick={(e) => handleSearch(e)}  className='w-full bg-[#072462] text-white py-3 px xl:text-[20px] flex gap-3 items-center justify-center rounded-lg '><TbSearch /> Cari</button>
                 </div>
               </div>
             </div>

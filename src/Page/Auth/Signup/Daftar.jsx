@@ -55,21 +55,21 @@ const Daftar = () => {
                     <div className=''>
                         <p>Nama</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                            <input className='outline-none w-[90%] ' type="text" name="nama" id="nama" onChange={handleChangeText} value={data.nama}/>
+                            <input className='outline-none w-[90%] ' type="text" name="nama" id="nama" onChange={handleChangeText} value={data.nama} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}/>
                         </div>
                     </div>
                     <div className=''>
                         <p>Email</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                            <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email}/>
+                            <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}/>
                         </div>
                     </div>
                     <div className=''>
                         <p>Password</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                             {open?
-                            (<input className='outline-none w-full ' type="password" name="password" id="password" value={data.password} onChange={handleChangeText}/>):
-                            (<input className='outline-none w-full ' type="text" name="password" id="password" value={data.password} onChange={handleChangeText}/>)
+                            (<input className='outline-none w-full ' type="password" name="password" id="password" value={data.password} onChange={handleChangeText} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}/>):
+                            (<input className='outline-none w-full ' type="text" name="password" id="password" value={data.password} onChange={handleChangeText} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}/>)
 
                             }
                             <button className='text-[24px]' onClick={()=> setOpen(!open)}>
@@ -80,7 +80,7 @@ const Daftar = () => {
                     <div className=''>
                         <p>Tanggal Lahir</p>
                         <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                            <input className='outline-none w-full ' type="date" name="tanggalLahir" id="tanggalLahir" onChange={handleChangeText} value={data.tanggalLahir}/>
+                            <input className='outline-none w-full ' type="date" name="tanggalLahir" id="tanggalLahir" onChange={handleChangeText} value={data.tanggalLahir} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}/>
                         </div>
                     </div>
                     <div className="flex flex-col items-center gap-2"> 

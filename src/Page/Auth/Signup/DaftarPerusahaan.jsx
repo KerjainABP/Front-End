@@ -65,21 +65,21 @@ const DaftarPerusahaan = () => {
             <div className=''>
               <p>Nama Perusahaan</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                <input className='outline-none w-[90%] ' type="text" name="nama" id="nama" onChange={handleChangeText} value={data.nama} />
+                <input className='outline-none w-[90%] ' type="text" name="nama" id="nama" onChange={handleChangeText} value={data.nama} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()} />
               </div>
             </div>
             <div className=''>
               <p>Email</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email} />
+                <input className='outline-none w-[90%] ' type="email" name="email" id="email" onChange={handleChangeText} value={data.email} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()} />
               </div>
             </div>
             <div className=''>
               <p>Password</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
                 {open ?
-                  (<input className='outline-none w-[90%] ' type="password" name="password" id="password" value={data.password} onChange={handleChangeText} />) :
-                  (<input className='outline-none w-[90%] ' type="text" name="password" id="password" value={data.password} onChange={handleChangeText} />)
+                  (<input className='outline-none w-[90%] ' type="password" name="password" id="password" value={data.password} onChange={handleChangeText} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()} />) :
+                  (<input className='outline-none w-[90%] ' type="text" name="password" id="password" value={data.password} onChange={handleChangeText} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}/>)
 
                 }
                 <button className='text-[24px]' onClick={() => setOpen(!open)}>
@@ -90,7 +90,7 @@ const DaftarPerusahaan = () => {
             <div className=''>
               <p>Tahun Berdiri</p>
               <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
-                <input className='outline-none w-[90%] ' type="number" name="tahunBerdiri" id="tahunBerdiri" onChange={handleChangeText} value={data.tahunBerdiri} />
+                <input className='outline-none w-[90%] ' type="number" name="tahunBerdiri" id="tahunBerdiri" onChange={handleChangeText} value={data.tahunBerdiri} onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}/>
               </div>
             </div>
             <div className=''>
@@ -105,6 +105,7 @@ const DaftarPerusahaan = () => {
                     value="Negri"
                     checked={selectedOption === 'Negri'}
                     onChange={handleOptionChange}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
                   />
                   <label htmlFor="negri">Negri</label>
                 </div>
@@ -117,6 +118,7 @@ const DaftarPerusahaan = () => {
                     value="Swasta"
                     checked={selectedOption === 'Swasta'}
                     onChange={handleOptionChange}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
                   />
                   <label htmlFor="swasta">Swasta</label>
                 </div>

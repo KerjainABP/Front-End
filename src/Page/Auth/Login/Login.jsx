@@ -15,6 +15,7 @@ const Login = () => {
         "password": ""
     })
     const notify = (text) => toast(text);
+    const warn = (text) => toast.warn(text);
     const handleChangeText = (e) => {
         const { id, value } = e.target;
         setData((prevCustomer) => ({
@@ -40,6 +41,7 @@ const Login = () => {
                 }, 2000);
             }).catch(function (error) {
                 console.log(error);
+                warn("Email/Password Anda Salah")
             })
         } catch (error) {
             console.error('Error:', error);
