@@ -12,6 +12,9 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
     });
     const [cookies, setCookie, removeCookie] = useCookies(['userID']);
     const navigate = useNavigate()
+    const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
     useEffect(() => {
         const userID = cookies.userID;
 
@@ -40,19 +43,8 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
 
     };
     const handleLogout = () => {
-        // Menghapus cookie 'userID'
-        removeCookie('userID', { path: '/' });
-
-        // Mengatur ulang state userData atau state lain yang relevan
-        setUserData({
-            nama: '',
-            email: '',
-            tanggalLahir: '',
-            deskripsi: ''
-        });
-
-        // Mengalihkan pengguna ke halaman login
-        navigate('/');
+        // Mengatur state showModal menjadi true saat tombol "Keluar" ditekan
+        setShowModal(true);
     };
 
     const handleSaveProfile = async () => {
@@ -74,40 +66,73 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
         }
     };
 
-    const handleDeleteUser = async () => {
-        const userID = cookies.userID;
-        try {
-            await axios.delete(`https://kerjainbe-production.up.railway.app/api/deleteuser/${userID}`);
-            console.log('Pengguna berhasil dihapus');
-            // Menghapus cookie 'userID'
-            removeCookie('userID', { path: '/' });
-            // Opsi untuk navigasi setelah penghapusan berhasil
-            navigate('/'); // Asumsikan '/login' adalah route untuk halaman login
-        } catch (error) {
-            console.error('Gagal menghapus pengguna', error);
-        }
+    const handleDeleteUser = () => {
+        // Mengatur state showDeleteModal menjadi true saat tombol "Hapus Akun" ditekan
+        setShowDeleteModal(true);
     };
 
-    const handleSendPhoto = async (photoData) => {
-        const userID = cookies.userID;
-        const dataImg = new FormData()
-        dataImg.append('image',photoData)
-        try {
-            const response = await axios.post(`https://kerjainbe-production.up.railway.app/api/user/editpfp/${userID}`, dataImg ,{
-                headers:{
-                    "Custom-Header":"value"
-                }
-            });
-            console.log('Foto berhasil dikirim', response.data);
-            // Tambahkan logika atau feedback tambahan jika diperlukan
-        } catch (error) {
-            console.error('Gagal mengirim foto', error);
-        }
+    const Modal = () => {
+        return (
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="modal">
+                    <div className="modal-content">
+                        <p>Apakah Anda yakin ingin keluar?</p>
+                        <button onClick={() => setShowModal(false)}>Batal</button>
+                        <button onClick={() => {
+                            // Menghapus cookie 'userID'
+                            removeCookie('userID', { path: '/' });
+
+                            // Mengatur ulang state userData atau state lain yang relevan
+                            setUserData({
+                                nama: '',
+                                email: '',
+                                tanggalLahir: '',
+                                deskripsi: ''
+                            });
+
+                            // Mengalihkan pengguna ke halaman login
+                            navigate('/');
+                        }}>Keluar</button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const DeleteModal = () => {
+        return (
+            <div className="fixed inset-0 flex items-center justify-center z-50 text-white">
+                <div className="bg-slate-500 p-10">
+                    <div className="modal-content">
+                        <p className='mb-4'>Apakah Anda yakin ingin menghapus akun?</p>
+                        <div className='flex items-center justify-between'>
+                            <button className='px-3 py-2  ' onClick={() => setShowDeleteModal(false)}>Batal</button>
+                            <button className='px-3 py-2 bg-[#ED1A1A] rounded-md' onClick={async () => {
+                                const userID = cookies.userID;
+                                try {
+                                    await axios.delete(`https://kerjainbe-production.up.railway.app/api/deleteuser/${userID}`);
+                                    console.log('Pengguna berhasil dihapus');
+                                    // Menghapus cookie 'userID'
+                                    removeCookie('userID', { path: '/' });
+                                    // Opsi untuk navigasi setelah penghapusan berhasil
+                                    navigate('/'); // Asumsikan '/login' adalah route untuk halaman login
+                                } catch (error) {
+                                    console.error('Gagal menghapus pengguna', error);
+                                }
+                            }}>Hapus Akun</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     };
 
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="fixed inset-0 bg-black opacity-60"></div>
+            {showModal && <Modal />}
+            {showDeleteModal && <DeleteModal />}
             <div className="relative sm:w-[800px] h-fit w-full max-sm:w-[400px] px-10 bg-white rounded-[16px] font-inter max-sm:px-[10px]  py-[42px] ">
                 <div className='flex justify-between items-center w-full border-b-2 border-blue-950 mb-5'>
                     <h1 className='text-[#031C32] font-satoshi font-bold text-[24px]'>Profile Saya</h1>
@@ -144,6 +169,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                     </div>
                 </div>
             </div>
+            
         </div>
     )
 }
