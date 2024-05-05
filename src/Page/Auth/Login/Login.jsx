@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../../../Component/Navbar/Navbar'
 import { TbEye, TbEyeClosed } from "react-icons/tb"
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useCookies } from 'react-cookie'
 import { ToastContainer, toast } from 'react-toastify';
@@ -52,9 +52,9 @@ const Login = () => {
             <Navbar />
             <div className='bg-[#E5E5E5] h-[100vh] flex flex-row border justify-center items-center'>
                 <div className=' '>
-                    <h1 className='mb-4'>Apakah anda mencari karyawan? </h1>
+                    <Link to={`/masukPerusahaan`} className='mb-4'>Apakah anda mencari karyawan? </Link>
                     <div className=' flex flex-col gap-4 bg-white px-10 py-5 lg:px-[72px] lg:py-8 lg:w-[450px]'>
-                        <h1 className='font-bold text-[36px]'>Masuk</h1>
+                        <h1 className='font-bold text-[30px]'>Masuk Karyawan</h1>
                         <div>
                             <p>Email</p>
                             <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
@@ -76,6 +76,7 @@ const Login = () => {
                         </div>
                         <div className="flex flex-col items-center">
                             <button type="button" className="text-white w-full bg-[#051A49] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"  onClick={handleSubmit}>Masuk</button>
+                            <p>Belum punya akun? <Link to='/daftar' className='text-[#003EC8]'>daftar disini</Link></p>
                         </div>
                     </div>
                 </div>

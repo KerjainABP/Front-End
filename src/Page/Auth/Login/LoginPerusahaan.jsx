@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import Navbar from '../../../Component/Navbar/Navbar';
 import { TbEye, TbEyeClosed } from 'react-icons/tb';
@@ -51,9 +51,9 @@ const LoginPerusahaan = () => {
             <Navbar />
             <div className='bg-[#E5E5E5] h-[100vh] flex flex-row border justify-center items-center'>
                 <div className=' '>
-                    <h1>Apakah anda mencari Pekerjaan? </h1>
+                    <Link to={`/masuk`}>Apakah anda mencari Pekerjaan? </Link>
                     <div className=' bg-white flex flex-col gap-4 px-6 py-4 lg:px-[72px] lg:py-8 lg:w-[450px]'>
-                        <h1 className='font-bold text-[36px]'>Masuk</h1>
+                        <h1 className='font-bold text-[30px]'>Masuk Perusahaan</h1>
                         <div>
                             <p>Email</p>
                             <div className=' border border-[#051A49] px-3 py-[6px] flex items-center rounded'>
@@ -76,7 +76,7 @@ const LoginPerusahaan = () => {
                         <div className="flex flex-col items-center">
 
                             <button type="button" className="text-white w-full bg-[#051A49] rounded-lg text-sm px-5 py-2" onClick={handleSubmit}>Masuk</button>
-
+                            <p>Belum punya akun? <Link to='/daftarPerusahaan' className='text-[#003EC8]'>Daftar disini</Link></p>
                         </div>
                     </div>
                 </div>

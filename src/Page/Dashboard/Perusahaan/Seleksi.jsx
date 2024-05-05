@@ -4,9 +4,10 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import PTProfile from '../../../Component/Popup/PTProfile';
 import Footer from '../../../Component/Footer/Footer';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { TbArrowLeft } from 'react-icons/tb';
 const Seleksi = () => {
+    const navigate = useNavigate()
     const { id } = useParams()
     const [error, setError] = useState(null);
     const [dataLowongan, setDataLowongan] = useState(null)
@@ -53,7 +54,7 @@ const Seleksi = () => {
         const idLowongan = id; // Menggunakan id dari useParams untuk idLowongan
         axios.put(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/terima/${idLowongan}/${idUser}`)
             .then(response => {
-                console.log(response)
+                navigate("/dashboardPerusahaan")
             })
             .catch(error => {
                 console.log("Error", error)
@@ -63,7 +64,7 @@ const Seleksi = () => {
         const idLowongan = id; // Menggunakan id dari useParams untuk idLowongan
         axios.put(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/tolak/${idLowongan}/${idUser}`)
             .then(response => {
-                console.log(response)
+                navigate("/dashboardPerusahaan")
             })
             .catch(error => {
                 console.log("Error", error)
@@ -89,7 +90,6 @@ const Seleksi = () => {
                                     <div className='mb-5' >
                                         <div>
                                             <p className='text-[20px] font-bold'>{item.nama_posisi}</p>
-
                                         </div>
                                     </div>
                                     <p className='text-[20px] font-light'>{item.lokasi}</p>
@@ -103,9 +103,6 @@ const Seleksi = () => {
                                 <div className='border rounded-xl p-[30px] flex justify-between'>
                                     <div>
                                         <div className='mb-5' >
-                                            <div className='bg-slate-600 w-20 h-20 rounded-full'>
-
-                                            </div>
                                             <div>
                                                 <p className='text-[20px] font-bold'>{user.nama}</p>
                                                 <p className='text-[18px] '>{user.email}</p>

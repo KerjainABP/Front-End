@@ -74,25 +74,27 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
     const Modal = () => {
         return (
             <div className="fixed inset-0 flex items-center justify-center z-50">
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="bg-slate-400 px-10 py-4">
+                    <div className="flex flex-col gap-3">
                         <p>Apakah Anda yakin ingin keluar?</p>
-                        <button onClick={() => setShowModal(false)}>Batal</button>
-                        <button onClick={() => {
-                            // Menghapus cookie 'userID'
-                            removeCookie('userID', { path: '/' });
+                        <div className='flex gap-2'>
+                            <button className='px-4 py-2 border rounded-lg ' onClick={() => setShowModal(false)}>Batal</button>
+                            <button className='px-4 py-2 border rounded-lg bg-[#]' onClick={() => {
+                                // Menghapus cookie 'userID'
+                                removeCookie('userID', { path: '/' });
 
-                            // Mengatur ulang state userData atau state lain yang relevan
-                            setUserData({
-                                nama: '',
-                                email: '',
-                                tanggalLahir: '',
-                                deskripsi: ''
-                            });
+                                // Mengatur ulang state userData atau state lain yang relevan
+                                setUserData({
+                                    nama: '',
+                                    email: '',
+                                    tanggalLahir: '',
+                                    deskripsi: ''
+                                });
 
-                            // Mengalihkan pengguna ke halaman login
-                            navigate('/');
-                        }}>Keluar</button>
+                                // Mengalihkan pengguna ke halaman login
+                                navigate('/');
+                            }}>Keluar</button>
+                        </div>
                     </div>
                 </div>
             </div>
