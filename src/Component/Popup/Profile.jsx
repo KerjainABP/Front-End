@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { TbX } from 'react-icons/tb';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import { TbMapPin } from 'react-icons/tb';
 const EditProfile = ({ handleDialog, setHandleDialog }) => {
     const [userData, setUserData] = useState({
         nama: '',
@@ -14,13 +15,31 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
+    const [riwayatKerja, setRiwayatKerja] = useState(null)
+    const [dataLowongan, setDataLowongan] = useState(null)
+    const [dataPerusahaan, setDataPerusahaan] = useState(null)
+    const searchPT = (perusahaan, post) => {
+        const company = perusahaan.filter(item1 => post.some(item2 => item2.id_perusahaan === item1.id));
+        let compNames = company.map((item) => item.nama);
+        return compNames;
+    }
+    const searchLoc = (lowongan, post) => {
+        const company = lowongan.filter(item1 => post.some(item2 => item2.id_lowongan === item1.id));
+        let compLoc= company.map((item) => item.lokasi);
+        return compLoc;
+    }
     useEffect(() => {
         const userID = cookies.userID;
 
         const fetchData = async () => {
             try {
                 const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/${userID}`);
+                const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/lowongan/all`);
+                const perusahaan = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/perusahaan/all`);
+                const riwayatKerja = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/experience/${userID}`)
+                setRiwayatKerja(riwayatKerja.data)
+                setDataLowongan(lowongan.data)
+                setDataPerusahaan(perusahaan.data)
                 setUserData(response.data);
                 setUserData({
                     nama: response.data.nama,
@@ -58,7 +77,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
             });
             console.log('Profil berhasil diperbarui', response.data);
             // Menutup dialog atau memberikan feedback ke pengguna
-            navigate(0)
+            window.location.reload(); 
             
             
         } catch (error) {
@@ -78,8 +97,8 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                     <div className="flex flex-col gap-3">
                         <p>Apakah Anda yakin ingin keluar?</p>
                         <div className='flex gap-2'>
-                            <button className='px-4 py-2 border rounded-lg ' onClick={() => setShowModal(false)}>Batal</button>
-                            <button className='px-4 py-2 border rounded-lg bg-[#]' onClick={() => {
+                            <button className='px-4 py-2 text-white rounded-lg bg-[#031C32]' onClick={() => setShowModal(false)}>Batal</button>
+                            <button className='px-4 py-2 rounded-lg text-white  bg-[#ED1A1A]' onClick={() => {
                                 // Menghapus cookie 'userID'
                                 removeCookie('userID', { path: '/' });
 
@@ -159,6 +178,29 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                         <h1 className='text-[20px] font-medium'>Deskripsi</h1>
                         <textarea type="text" className='resize-none outline-none border-2 w-full border-[#051A49] px-3 py-2 rounded' value={userData.deskripsi} onChange={(e) => setUserData({...userData, deskripsi: e.target.value})}></textarea>
                     </div>
+                    <div>
+                        <h1 className='text-[20px] font-medium'>Riwayat Kerjain</h1>
+                        <div className='grid grid-cols-2 gap-4'>
+                            {riwayatKerja && riwayatKerja.map((item, i) => (
+                                <div key={i} className='border p-3 bg-[#051A49] text-white rounded-xl'>
+                                    <div className='flex items-center gap-3 mb-3'>
+                                        <div>
+                                            <p>{item?.nama_posisi}</p>
+                                            <p>{searchPT(dataPerusahaan, [item])}</p>
+                                        </div>
+
+
+                                    </div>
+                                    <div className='flex items-center gap-3'>
+                                        <TbMapPin className='text-[24px]'/>
+                                        <p>{searchLoc(dataLowongan, [item])}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div>
                 </div>
                 <div className='flex justify-between'>
                     <div className='flex gap-4 items-center'>
@@ -166,8 +208,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                         <button className='px-2 py-2 bg-[#051A49] text-white rounded-md' onClick={handleSaveProfile}>Simpan</button>
                     </div>
                     <div>
-                        <button className='px-2 py-2 bg-[#051A49] text-white rounded-md' onClick={handleLogout}>Keluar</button>
-                        
+                        <button className='px-2 py-2 bg-[#051A49] text-white rounded-md' onClick={handleLogout}>Keluar</button>      
                     </div>
                 </div>
             </div>

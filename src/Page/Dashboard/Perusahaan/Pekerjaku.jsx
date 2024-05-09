@@ -54,6 +54,7 @@ const Pekerjaku = () => {
         axios.put(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/selesai/${idLowongan}/${idUser}`)
             .then(response => {
                 console.log(response)
+                window.location.reload(); 
             })
             .catch(error => {
                 console.log("Error", error)

@@ -14,7 +14,7 @@ const CardJob = (props) => {
         return `Rp ${formattedAmount}`;
     }
     return (
-        <NavLink to={`${id ? `/kualifikasi/${id}`:"/dashboardUser"}`}>
+        <NavLink to={`/kualifikasi/${id}`}>
             <button className='bg-[#051A49] px-6 py-5 w-full max-xl:flex flex-col max-xl:h-[300px] xl:w-[400px] text-white rounded-2xl'>
                 <div className='flex items-center gap-5 mb-5'>
                     <div>
