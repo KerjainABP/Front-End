@@ -33,10 +33,10 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/${userID}`);
-                const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/lowongan/all`);
-                const perusahaan = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/perusahaan/all`);
-                const riwayatKerja = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/experience/${userID}`)
+                const response = await axios.get(`https://bekerjain-production.up.railway.app/api/user/${userID}`);
+                const lowongan = await axios.get(`https://bekerjain-production.up.railway.app/api/user/lowongan/all`);
+                const perusahaan = await axios.get(`https://bekerjain-production.up.railway.app/api/user/perusahaan/all`);
+                const riwayatKerja = await axios.get(`https://bekerjain-production.up.railway.app/api/user/experience/${userID}`)
                 setRiwayatKerja(riwayatKerja.data)
                 setDataLowongan(lowongan.data)
                 setDataPerusahaan(perusahaan.data)
@@ -69,7 +69,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
     const handleSaveProfile = async () => {
         const userID = cookies.userID;
         try {
-            const response = await axios.put(`https://kerjainbe-production.up.railway.app/api/user/edit/${userID}`, {
+            const response = await axios.put(`https://bekerjain-production.up.railway.app/api/user/edit/${userID}`, {
                 nama:userData.nama,
                 email:userData.email,
                 tanggal_lahir: userData.tanggalLahir,
@@ -131,7 +131,7 @@ const EditProfile = ({ handleDialog, setHandleDialog }) => {
                             <button className='px-3 py-2 bg-[#ED1A1A] rounded-md' onClick={async () => {
                                 const userID = cookies.userID;
                                 try {
-                                    await axios.delete(`https://kerjainbe-production.up.railway.app/api/deleteuser/${userID}`);
+                                    await axios.delete(`https://bekerjain-production.up.railway.app/api/deleteuser/${userID}`);
                                     console.log('Pengguna berhasil dihapus');
                                     // Menghapus cookie 'userID'
                                     removeCookie('userID', { path: '/' });

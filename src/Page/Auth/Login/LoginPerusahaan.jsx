@@ -27,7 +27,7 @@ const LoginPerusahaan = () => {
     const handleSubmit = async () => {
         try {
 
-            const response = await axios.post('https://kerjainbe-production.up.railway.app/api/loginperusahaan', {
+            const response = await axios.post('https://bekerjain-production.up.railway.app/api/loginperusahaan', {
                 'email': data.email,
                 'password': data.password
             }, {

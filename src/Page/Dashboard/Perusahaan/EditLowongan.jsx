@@ -14,7 +14,7 @@ const EditLowongan = () => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/lowongan/${id}`);
+                const response = await axios.get(`https://bekerjain-production.up.railway.app/api/user/lowongan/${id}`);
                 console.log(response.data)
                 setData(response.data)
 
@@ -40,7 +40,7 @@ const EditLowongan = () => {
     };
     const handleSubmit = async () => {
         try {
-            const response = await axios.put(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/edit/${id}`, data);
+            const response = await axios.put(`https://bekerjain-production.up.railway.app/api/pt/lowonganperusahaan/edit/${id}`, data);
             setTimeout(() => {
                 navigate('/dashboardPerusahaan');
             }, 2000);

@@ -39,7 +39,7 @@ const DaftarPerusahaan = () => {
     console.log("Tanggal Lahir", data.tahunBerdiri)
     console.log("Tipe", selectedOption)
     try {
-      const response = await axios.post('https://kerjainbe-production.up.railway.app/api/registerperusahaan', {
+      const response = await axios.post('https://bekerjain-production.up.railway.app/api/registerperusahaan', {
         'nama': data.nama,
         'email': data.email,
         'password': data.password,

@@ -7,7 +7,7 @@ const MarqueePT = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const perusahaan = await axios.get('https://kerjainbe-production.up.railway.app/api/user/perusahaan/all');
+                const perusahaan = await axios.get('https://bekerjain-production.up.railway.app/api/user/perusahaan/all');
                 setDaftarPerusahaan(perusahaan.data)
             } catch (error) {
                 console.error("Gagal memuat data:", error);

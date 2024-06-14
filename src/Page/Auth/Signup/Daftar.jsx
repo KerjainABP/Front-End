@@ -31,7 +31,7 @@ const Daftar = () => {
         console.log("Password",data.password)
         console.log("Tanggal Lahir",data.tanggalLahir)
         try {
-            const response = await axios.post('https://kerjainbe-production.up.railway.app/api/registeruser', {
+            const response = await axios.post('https://bekerjain-production.up.railway.app/api/registeruser', {
                 'nama':data.nama,
                 'email': data.email,
                 'password':data.password,

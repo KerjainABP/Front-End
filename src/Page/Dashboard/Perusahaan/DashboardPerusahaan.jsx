@@ -28,9 +28,9 @@ const DashboardPerusahaan = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/${perusahaanID}`);
-        const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/${perusahaanID}`)
-        const pelamar = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/allkerja/get`)
+        const response = await axios.get(`https://bekerjain-production.up.railway.app/api/pt/${perusahaanID}`);
+        const lowongan = await axios.get(`https://bekerjain-production.up.railway.app/api/pt/lowonganperusahaan/${perusahaanID}`)
+        const pelamar = await axios.get(`https://bekerjain-production.up.railway.app/api/user/allkerja/get`)
         setUserData(response.data);
         setDataLowongan(lowongan.data)
         setKerja(pelamar.data)

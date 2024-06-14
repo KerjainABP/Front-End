@@ -19,9 +19,8 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/${userID}`);
-                const lowongan = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/${userID}`);
-                console.log(lowongan.data)
+                const response = await axios.get(`https://bekerjain-production.up.railway.app/api/pt/${userID}`);
+                const lowongan = await axios.get(`https://bekerjain-production.up.railway.app/api/pt/lowonganperusahaan/${userID}`);
                 setUserData({
                     nama: response.data.nama,
                     email: response.data.email,
@@ -49,7 +48,7 @@ const PTProfile = ({ handleDialog, setHandleDialog }) => {
         const dataImg = new FormData()
         dataImg.append('image',photoData)
         try {
-            const response = await axios.post(`https://kerjainbe-production.up.railway.app/api/pt/editptpfp/${userID}`, dataImg,{
+            const response = await axios.post(`https://bekerjain-production.up.railway.app/api/pt/editptpfp/${userID}`, dataImg,{
                 headers:{
                     "Custom-Header":"value"
                 }

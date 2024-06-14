@@ -33,9 +33,9 @@ const CardSwiper = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://kerjainbe-production.up.railway.app/api/user/lowongan/all');
-        const perusahaan = await axios.get('https://kerjainbe-production.up.railway.app/api/user/perusahaan/all')
-        const pelamar = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/allkerja/get`)
+        const response = await axios.get('https://bekerjain-production.up.railway.app/api/user/lowongan/all');
+        const perusahaan = await axios.get('https://bekerjain-production.up.railway.app/api/user/perusahaan/all')
+        const pelamar = await axios.get(`https://bekerjain-production.up.railway.app/api/user/allkerja/get`)
         setPosts(response.data);        
         setPerusahaan(perusahaan.data);
         setKerja(pelamar.data)

@@ -26,7 +26,7 @@ const BuatIklan = () => {
     const handleSubmit = async() => {
         try {
 
-            const response = await axios.post(`https://kerjainbe-production.up.railway.app/api/pt/newlowongan/${perusahaanID}`, {
+            const response = await axios.post(`https://bekerjain-production.up.railway.app/api/pt/newlowongan/${perusahaanID}`, {
                 'nama_posisi':data.jabatan,
                 'deskripsi_pekerjaan':data.deskripsi,
                 'lokasi':data.lokasi,

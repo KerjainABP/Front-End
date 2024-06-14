@@ -29,10 +29,9 @@ const Pekerjaku = () => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/lowongan/${id}`);
-                const pelamar = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/pegawai/${id}`)
-                const perusahaan = await axios.get(`https://kerjainbe-production.up.railway.app/api/pt/${perusahaanID}`)
-                
+                const response = await axios.get(`https://bekerjain-production.up.railway.app/api/user/lowongan/${id}`);
+                const pelamar = await axios.get(`https://bekerjain-production.up.railway.app/api/pt/lowonganperusahaan/pegawai/${id}`)
+                const perusahaan = await axios.get(`https://bekerjain-production.up.railway.app/api/pt/${perusahaanID}`)
                 setPerusahaan(perusahaan.data)
                 setDataLowongan([response.data]);
                 setUserData(pelamar.data)
@@ -51,7 +50,7 @@ const Pekerjaku = () => {
 
     const handleTolak = (idUser) => {
         const idLowongan = id; // Menggunakan id dari useParams untuk idLowongan
-        axios.put(`https://kerjainbe-production.up.railway.app/api/pt/lowonganperusahaan/selesai/${idLowongan}/${idUser}`)
+        axios.put(`https://bekerjain-production.up.railway.app/api/pt/lowonganperusahaan/selesai/${idLowongan}/${idUser}`)
             .then(response => {
                 console.log(response)
                 window.location.reload(); 

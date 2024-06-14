@@ -20,7 +20,7 @@ const ListPerusahaan = () => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://kerjainbe-production.up.railway.app/api/user/${userID}`);
+                const response = await axios.get(`https://bekerjain-production.up.railway.app/api/user/${userID}`);
                 setUserData(response.data);
             } catch (error) {
                 setError(error);
